@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HINKO Ingeniería — Construcción e ingeniería civil</title>
-<link rel="icon" href="assets/favicon.svg" />
+<title>HINKO Ingeniería — Cuidado experto de edificios</title>
+<link rel="icon" href="assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -15,6 +15,9 @@
   .wrap{max-width:1280px;margin:0 auto;padding-inline:clamp(20px,4vw,64px);}
   a{color:inherit;}
   ::selection{background:var(--gold);color:var(--navy);}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px;}
+  section,footer{scroll-margin-top:84px;}
+  img{max-width:100%;}
 
   /* ---------- nav ---------- */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .35s,border-color .35s,box-shadow .35s;border-bottom:1px solid transparent;}
@@ -26,53 +29,52 @@
   .nav .logo{display:flex;align-items:center;}
   .nav .logo img{height:52px;width:auto;display:block;transition:height .35s;}
   header.nav.scrolled .logo img{height:42px;}
-  .nav nav{display:flex;align-items:center;gap:28px;}
-  .nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
-  .nav ul a{position:relative;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.10em;text-transform:uppercase;color:#C9D2DC;text-decoration:none;transition:color .2s;padding-block:6px;}
+  .nav nav{display:flex;align-items:center;gap:34px;}
+  .nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;}
+  .nav ul a{position:relative;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#C9D2DC;text-decoration:none;transition:color .2s;padding-block:6px;}
   .nav ul a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;background:var(--gold);transition:right .25s ease;}
   .nav ul a:hover{color:#fff;}
   .nav ul a:hover::after{right:0;}
 
-  /* WhatsApp button */
-  .btn-wa{font-family:var(--font-mono);font-size:12px;letter-spacing:.10em;text-transform:uppercase;background:var(--gold);color:var(--navy);border:0;padding:12px 20px;border-radius:3px;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;transition:transform .18s,box-shadow .18s;box-shadow:0 8px 22px -12px rgba(205,154,58,.8);}
-  .btn-wa:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(205,154,58,.95);}
-  .btn-wa .wa-ico{width:15px;height:15px;flex-shrink:0;fill:currentColor;}
-
-  .btn{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--navy);border:0;padding:14px 26px;border-radius:3px;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;transition:transform .18s,box-shadow .18s;box-shadow:0 8px 22px -12px rgba(205,154,58,.8);}
+  .btn{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--navy);border:0;padding:14px 26px;border-radius:3px;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;transition:transform .18s,box-shadow .18s,background .2s;box-shadow:0 8px 22px -12px rgba(205,154,58,.8);cursor:pointer;}
   .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(205,154,58,.95);}
   .btn .ar{font-size:15px;transition:transform .2s;}
   .btn:hover .ar{transform:translateX(4px);}
+  .btn svg{width:16px;height:16px;}
   .btn.ghost{background:transparent;border:1px solid rgba(226,194,126,.5);color:var(--gold-soft);box-shadow:none;}
   .btn.ghost:hover{background:rgba(226,194,126,.1);border-color:var(--gold-soft);}
 
   /* mobile menu */
   .menu-toggle{display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.18);border-radius:4px;background:rgba(255,255,255,.04);cursor:pointer;padding:0;align-items:center;justify-content:center;flex-direction:column;gap:5px;}
   .menu-toggle span{display:block;width:20px;height:2px;background:#E7EDF3;transition:transform .28s,opacity .2s;}
+  body.menu-open{overflow:hidden;}
   body.menu-open .menu-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   body.menu-open .menu-toggle span:nth-child(2){opacity:0;}
   body.menu-open .menu-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  #mobile-menu{display:none;position:fixed;top:0;left:0;right:0;z-index:45;background:#021a33;padding:100px clamp(24px,6vw,48px) 48px;border-bottom:1px solid rgba(255,255,255,.1);transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);}
+  #mobile-menu{display:none;position:fixed;top:0;left:0;right:0;z-index:45;background:#021a33;padding:100px clamp(24px,6vw,48px) 40px;border-bottom:1px solid rgba(255,255,255,.1);transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);}
   body.menu-open #mobile-menu{transform:translateY(0);}
-  #mobile-menu a.lnk{display:block;font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:-.01em;color:#EAF0F5;text-decoration:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+  #mobile-menu a.lnk{display:block;font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:-.01em;color:#EAF0F5;text-decoration:none;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);}
   #mobile-menu a.lnk:hover{color:var(--gold-soft);}
-  #mobile-menu .btn-wa{margin-top:28px;width:100%;justify-content:center;font-size:14px;padding:16px;}
-  @media(max-width:1100px){.nav nav ul{display:none;}.nav nav>.btn-wa{display:none;}.menu-toggle{display:flex;}#mobile-menu{display:block;}}
+  #mobile-menu .btn{margin-top:28px;width:100%;justify-content:center;}
+  @media(max-width:980px){.nav nav ul{display:none;}.nav nav>.btn{display:none;}.menu-toggle{display:flex;}#mobile-menu{display:block;}}
 
   /* ---------- hero ---------- */
-  .hero{background:var(--navy);color:#fff;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;}
-  .hero .grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 79px,rgba(246,244,239,.04) 79px 80px),repeating-linear-gradient(90deg,transparent 0 79px,rgba(246,244,239,.025) 79px 80px);mask-image:radial-gradient(120% 100% at 70% 40%,#000 30%,transparent 78%);pointer-events:none;}
-  .hero .chev-back{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:min(42vw,560px);opacity:.10;}
-  .hero .chev-front{position:absolute;right:-70px;top:50%;transform:translateY(-50%);width:min(46vw,600px);opacity:.92;filter:drop-shadow(0 30px 60px rgba(0,0,0,.45));}
+  .hero{background:var(--navy);color:#fff;min-height:100vh;min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;}
+  .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;opacity:.30;}
+  .hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,22,46,.62) 0%,rgba(0,22,46,.72) 48%,rgba(0,20,40,.97) 100%);}
+  .hero .grid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 79px,rgba(246,244,239,.045) 79px 80px),repeating-linear-gradient(90deg,transparent 0 79px,rgba(246,244,239,.025) 79px 80px);mask-image:radial-gradient(120% 100% at 72% 36%,#000 30%,transparent 80%);pointer-events:none;}
+  .hero .chev-front{position:absolute;right:-70px;top:46%;transform:translateY(-50%);width:min(40vw,520px);opacity:.16;filter:drop-shadow(0 30px 60px rgba(0,0,0,.45));}
   .hero .inner{position:relative;z-index:2;padding-top:92px;width:100%;}
-  .hero .kick{display:inline-flex;align-items:center;gap:14px;font-family:var(--font-mono);font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);}
+  .hero .kick{display:inline-flex;align-items:center;gap:14px;font-family:var(--font-mono);font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);}
   .hero .kick::before{content:"";width:34px;height:2px;background:var(--gold);display:inline-block;}
-  .hero h1{font-family:var(--font-display);font-weight:900;font-size:clamp(48px,8.2vw,116px);line-height:.92;letter-spacing:-.035em;margin:26px 0 0;max-width:13ch;}
+  .hero h1{font-family:var(--font-display);font-weight:900;font-size:clamp(46px,7.4vw,104px);line-height:.94;letter-spacing:-.035em;margin:26px 0 0;max-width:15ch;}
   .hero h1 em{font-style:normal;color:var(--gold);}
-  .hero p{font-size:clamp(17px,1.7vw,21px);color:#C9D2DC;max-width:46ch;margin-top:30px;}
-  .hero .cta{display:flex;gap:16px;margin-top:42px;flex-wrap:wrap;}
-  .hero .cta .btn-wa{font-size:13px;padding:15px 26px;}
+  .hero p{font-size:clamp(16.5px,1.55vw,20px);color:#C9D2DC;max-width:54ch;margin-top:28px;text-align:justify;hyphens:auto;}
+  .hero .cta{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+  .hero .aud{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px;}
+  .hero .aud span{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);border:1px solid rgba(205,154,58,.45);padding:7px 13px;border-radius:2px;}
 
-  .hero .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;border-top:1px solid rgba(255,255,255,.1);background:rgba(0,18,36,.35);}
+  .hero .meta{position:absolute;left:0;right:0;bottom:0;z-index:2;border-top:1px solid rgba(255,255,255,.1);background:rgba(0,18,36,.4);}
   .hero .meta .row{display:flex;gap:clamp(28px,5vw,72px);flex-wrap:wrap;padding-block:22px;}
   .hero .meta .item .l{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#7E92A4;}
   .hero .meta .item .v{font-family:var(--font-display);font-weight:700;font-size:16px;color:#EAF0F5;margin-top:3px;letter-spacing:.01em;}
@@ -82,488 +84,433 @@
   @media(max-width:680px){.hero .meta .cue{display:none;}}
 
   /* ---------- section base ---------- */
-  section{padding-block:clamp(80px,11vw,148px);}
+  section{padding-block:clamp(78px,10vw,140px);}
   .kicker{font-family:var(--font-mono);font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-deep);}
-  h2.sec{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4.6vw,62px);line-height:1.0;letter-spacing:-.025em;margin:18px 0 0;color:var(--navy);}
-  .sec-lead{font-size:18.5px;color:var(--graphite);max-width:56ch;margin-top:22px;}
+  h2.sec{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,4.4vw,58px);line-height:1.02;letter-spacing:-.025em;margin:18px 0 0;color:var(--navy);}
+  .sec-lead{font-size:18px;color:var(--graphite);max-width:58ch;margin-top:22px;text-wrap:pretty;text-align:justify;hyphens:auto;}
   .rule{height:4px;width:64px;background:var(--gold);}
   .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;}
   .sec-head .idx{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.2em;color:var(--concrete);text-transform:uppercase;}
 
   /* ---------- servicios ---------- */
-  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--mist);border:1px solid var(--mist);margin-top:60px;}
-  .svc{position:relative;background:var(--paper);padding:46px 44px 50px;transition:background .25s;}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--mist);border:1px solid var(--mist);margin-top:56px;}
+  .svc{position:relative;background:var(--paper);padding:34px 30px 38px;transition:background .25s;}
   .svc::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--gold);transition:width .3s ease;}
   .svc:hover{background:#fff;}
   .svc:hover::before{width:100%;}
   .svc .top{display:flex;align-items:baseline;justify-content:space-between;}
-  .svc .n{font-family:var(--font-mono);font-size:13px;color:var(--gold-deep);letter-spacing:.2em;}
-  .svc .cv{width:18px;height:18px;opacity:.25;transition:opacity .25s,transform .25s;}
+  .svc .n{font-family:var(--font-mono);font-size:12.5px;color:var(--gold-deep);letter-spacing:.2em;}
+  .svc .cv{width:16px;height:16px;opacity:.22;transition:opacity .25s,transform .25s;}
   .svc:hover .cv{opacity:1;transform:translateX(3px);}
-  .svc h3{font-family:var(--font-display);font-weight:700;font-size:27px;color:var(--navy);margin:18px 0 0;line-height:1.1;letter-spacing:-.01em;}
-  .svc p{font-size:15.5px;color:var(--graphite);margin-top:14px;max-width:42ch;}
-  @media(max-width:760px){.svc-grid{grid-template-columns:1fr;}}
+  .svc h3{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--navy);margin:16px 0 0;line-height:1.14;letter-spacing:-.01em;}
+  .svc p{font-size:14px;color:var(--graphite);margin-top:11px;}
+  @media(max-width:980px){.svc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:540px){.svc-grid{grid-template-columns:1fr;}}
 
-  /* ---------- por qué hinko ---------- */
-  .porq{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
-  .porq::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0 79px,rgba(255,255,255,.025) 79px 80px),repeating-linear-gradient(90deg,transparent 0 79px,rgba(255,255,255,.015) 79px 80px);pointer-events:none;}
-  .porq .kicker{color:var(--gold-soft);}
-  .porq h2.sec{color:#fff;}
-  .porq .sec-lead{color:#B5C5D4;}
-  .sellos{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);margin-top:60px;position:relative;}
-  .sello{position:relative;background:rgba(0,18,36,.5);padding:40px 32px 44px;transition:background .3s;}
-  .sello:hover{background:rgba(0,18,36,.15);}
-  .sello .sel-ico{width:54px;height:54px;border-radius:50%;border:1.5px solid rgba(205,154,58,.4);display:flex;align-items:center;justify-content:center;margin-bottom:26px;background:rgba(205,154,58,.08);}
-  .sello .sel-ico svg{width:24px;height:24px;}
-  .sello h4{font-family:var(--font-display);font-weight:700;font-size:20px;color:#fff;margin:0 0 10px;letter-spacing:-.01em;line-height:1.2;}
-  .sello p{font-size:14.5px;color:#90A8BE;margin:0;line-height:1.65;}
-  .sello .sel-n{position:absolute;top:24px;right:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;color:rgba(205,154,58,.3);}
-  @media(max-width:900px){.sellos{grid-template-columns:repeat(2,1fr);}}
-  @media(max-width:500px){.sellos{grid-template-columns:1fr;}}
+  /* grupos de servicios (frentes) */
+  .svc-group{margin-top:64px;}
+  .svc-group .glabel{display:flex;align-items:center;gap:14px;}
+  .svc-group .gnum{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--gold-deep);border:1px solid var(--mist);border-radius:3px;padding:6px 12px;background:#fff;}
+  .svc-group .gtitle{font-family:var(--font-display);font-weight:800;font-size:clamp(22px,2.5vw,32px);color:var(--navy);letter-spacing:-.018em;margin:0;line-height:1.05;}
+  .svc-group .gsub{font-size:15.5px;color:var(--graphite);margin:14px 0 0;max-width:62ch;text-align:justify;hyphens:auto;}
+
+  /* tarjetas de disciplina (construcción) */
+  .disc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--mist);border:1px solid var(--mist);margin-top:28px;}
+  .disc{position:relative;background:var(--paper);padding:40px 30px 44px;transition:background .25s;}
+  .disc::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--gold);transition:width .3s ease;}
+  .disc:hover{background:#fff;}
+  .disc:hover::before{width:100%;}
+  .disc .top{display:flex;align-items:baseline;justify-content:space-between;}
+  .disc .n{font-family:var(--font-mono);font-size:13px;color:var(--gold-deep);letter-spacing:.2em;}
+  .disc .cv{width:18px;height:18px;opacity:.22;transition:opacity .25s,transform .25s;}
+  .disc:hover .cv{opacity:1;transform:translateX(3px);}
+  .disc h4{font-family:var(--font-display);font-weight:700;font-size:23px;color:var(--navy);margin:18px 0 0;line-height:1.12;letter-spacing:-.01em;}
+  .disc p{font-size:14.5px;color:var(--graphite);margin-top:13px;}
+  @media(max-width:980px){.disc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:540px){.disc-grid{grid-template-columns:1fr;}}
+  @media(hover:none){.disc::before{width:100%;}.disc .cv{opacity:.6;}}
+
+  /* ---------- por qué (banda navy) ---------- */
+  .why{background:var(--navy);color:#fff;position:relative;overflow:hidden;}
+  .why .glow{position:absolute;right:-8%;top:-30%;width:54vw;max-width:680px;opacity:.07;pointer-events:none;}
+  .why .wrap{position:relative;z-index:1;}
+  .why .kicker{color:var(--gold-soft);}
+  .why h2.sec{color:#fff;max-width:18ch;}
+  .why h2.sec em{font-style:normal;color:var(--gold);}
+  .why .pts{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:56px;}
+  .why .pt{border-top:2px solid var(--gold);padding-top:20px;}
+  .why .pt b{display:block;font-family:var(--font-display);font-weight:700;font-size:19px;color:#fff;letter-spacing:-.01em;}
+  .why .pt span{display:block;color:#A9B6C2;font-size:14.5px;line-height:1.55;margin-top:10px;}
+  .why .seals{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+  .why .seal{display:flex;align-items:center;gap:14px;border:1px solid rgba(255,255,255,.14);border-radius:5px;padding:18px 20px;background:rgba(255,255,255,.04);}
+  .why .seal svg{width:26px;height:26px;color:var(--gold-soft);flex-shrink:0;}
+  .why .seal b{display:block;font-family:var(--font-display);font-weight:700;font-size:14.5px;color:#fff;line-height:1.2;}
+  .why .seal span{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#8FA0B0;margin-top:5px;}
+  @media(max-width:880px){.why .pts{grid-template-columns:1fr 1fr;gap:32px 28px;}.why .seals{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.why .pts{grid-template-columns:1fr;}.why .seals{grid-template-columns:1fr;}}
 
   /* ---------- nuestro trabajo ---------- */
-  .trabajo{}
-  .tipo-tabs{display:flex;margin-top:48px;border:1px solid var(--mist);border-radius:4px;width:fit-content;overflow:hidden;}
-  .tipo-tab{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:12px 28px;cursor:pointer;background:transparent;border:0;border-right:1px solid var(--mist);color:var(--graphite);transition:background .2s,color .2s;}
-  .tipo-tab:last-child{border-right:0;}
-  .tipo-tab.active,.tipo-tab:hover{background:var(--navy);color:#fff;}
-  .tipo-panel{display:none;margin-top:32px;}
-  .tipo-panel.active{display:block;animation:fadeUp .4s cubic-bezier(.2,.7,.2,1);}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
-  .fases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-  .fase{border-radius:6px;overflow:hidden;background:var(--mist);}
-  .fase-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;}
-  .fase-ph{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9E9A8E;background:repeating-linear-gradient(135deg,#d5d0c6 0 14px,#cac5bb 14px 28px);}
-  .fase-lbl{padding:20px 24px;}
-  .fase-lbl .etapa{font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px;}
-  .fase-lbl .nombre{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--navy);letter-spacing:-.01em;}
-  .fase-lbl .desc{font-size:14.5px;color:var(--graphite);margin-top:6px;}
-  @media(max-width:820px){.fases-grid{grid-template-columns:1fr 1fr;}}
-  @media(max-width:500px){.fases-grid{grid-template-columns:1fr;}.tipo-tabs{width:100%;}.tipo-tab{flex:1;padding:12px 12px;font-size:10px;}}
+  .xform{margin-top:54px;}
+  .xform+.xform{margin-top:56px;}
+  .xhead{display:flex;align-items:baseline;justify-content:space-between;gap:24px;border-bottom:1px solid var(--mist);padding-bottom:16px;flex-wrap:wrap;}
+  .xhead .xt{font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--navy);letter-spacing:-.01em;}
+  .xhead .xs{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);}
+  .xrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:22px;}
+  .xcell{position:relative;border-radius:5px;overflow:hidden;aspect-ratio:1/1;background:var(--mist);}
+  .xcell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+  .xcell:hover img{transform:scale(1.05);}
+  .xcell .st{position:absolute;left:0;top:0;font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(0,28,56,.85);padding:6px 12px;border-bottom-right-radius:5px;z-index:2;}
+  .xcell .st.done{background:var(--gold);color:var(--navy);font-weight:500;}
+  .pairgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px;}
+  .pcard .imwrap{position:relative;aspect-ratio:16/11;border-radius:5px;overflow:hidden;background:var(--mist);}
+  .pcard .imwrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+  .pcard:hover .imwrap img{transform:scale(1.04);}
+  .pcard .cap{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.06em;color:var(--graphite);margin-top:12px;text-transform:uppercase;}
+  .pcard .cap b{color:var(--navy);font-weight:600;}
+  @media(max-width:680px){.xrow{gap:10px;}.pairgrid{grid-template-columns:1fr;}}
 
-  /* ---------- nosotros ---------- */
-  .nos-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,8vw,110px);align-items:start;margin-top:60px;}
-  .proceso{}
-  .paso{display:flex;gap:24px;padding:30px 0;border-bottom:1px solid var(--mist);}
-  .paso:first-child{padding-top:0;}
-  .paso .num{font-family:var(--font-mono);font-size:36px;font-weight:500;color:rgba(0,28,56,.12);line-height:1;flex-shrink:0;width:48px;}
-  .paso-cont h4{font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--navy);margin:0 0 7px;letter-spacing:-.01em;}
-  .paso-cont p{font-size:15px;color:var(--graphite);margin:0;line-height:1.6;}
-  .nos-stats{}
-  .stat-big{padding:34px 0;border-bottom:1px solid var(--mist);}
-  .stat-big:first-child{padding-top:0;}
-  .stat-big .n{font-family:var(--font-display);font-weight:900;font-size:clamp(54px,6vw,82px);line-height:.9;letter-spacing:-.04em;color:var(--navy);}
-  .stat-big .n em{font-style:normal;color:var(--gold);}
-  .stat-big .l{font-family:var(--font-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--graphite);margin-top:14px;}
-  @media(max-width:820px){.nos-cols{grid-template-columns:1fr;gap:48px;}}
+  /* banda de vía (pavimento rígido) */
+  .roadrow{display:grid;grid-template-columns:1fr;gap:16px;margin-top:22px;}
+  .xcell.road{aspect-ratio:5/2;}
+  @media(max-width:680px){.xcell.road{aspect-ratio:2/1;}}
 
-  /* ---------- footer ---------- */
+  /* ---------- proceso + nosotros ---------- */
+  .proc{background:#EFEDE6;}
+  .proc .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;}
+  .proc .about-lead{font-size:16.5px;color:var(--graphite);margin-top:22px;line-height:1.7;text-wrap:pretty;text-align:justify;hyphens:auto;}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:38px;border:1px solid var(--mist);border-radius:6px;overflow:hidden;background:var(--paper);}
+  .stats .st{padding:24px 22px;border-right:1px solid var(--mist);}
+  .stats .st:last-child{border-right:0;}
+  .stats .st .big{font-family:var(--font-display);font-weight:900;font-size:clamp(30px,3.4vw,40px);color:var(--navy);line-height:1;letter-spacing:-.02em;}
+  .stats .st .big em{font-style:normal;color:var(--gold);}
+  .stats .st .lb{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);margin-top:12px;line-height:1.55;}
+  .steps{display:grid;grid-template-columns:1fr;gap:0;}
+  .step{display:flex;gap:22px;padding:24px 0;border-bottom:1px solid var(--mist);}
+  .step:last-child{border-bottom:0;}
+  .step .sn{font-family:var(--font-mono);font-size:13px;color:var(--gold-deep);letter-spacing:.16em;padding-top:5px;min-width:34px;}
+  .step b{display:block;font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--navy);letter-spacing:-.01em;}
+  .step span{display:block;color:var(--graphite);font-size:15px;line-height:1.55;margin-top:6px;}
+  @media(max-width:860px){.proc .cols{grid-template-columns:1fr;gap:48px;}}
+  @media(max-width:420px){.stats{grid-template-columns:1fr;}.stats .st{border-right:0;border-bottom:1px solid var(--mist);}.stats .st:last-child{border-bottom:0;}}
+
+  /* ---------- footer / contacto ---------- */
   .foot{background:var(--navy);color:#9FB0BF;position:relative;overflow:hidden;}
   .foot .glow{position:absolute;right:-10%;top:-40%;width:60vw;max-width:760px;opacity:.06;pointer-events:none;}
-  .foot .top{position:relative;display:grid;grid-template-columns:1.2fr .9fr;gap:clamp(40px,6vw,80px);padding-block:clamp(80px,10vw,128px);}
-  .foot h2{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,4.4vw,60px);color:#fff;letter-spacing:-.025em;line-height:.98;}
-  .foot .rows{margin-top:36px;}
-  .foot .r{display:flex;justify-content:space-between;align-items:center;max-width:440px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12);}
+  .foot .top{position:relative;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(40px,6vw,72px);padding-block:clamp(78px,9vw,120px);align-items:start;}
+  .foot h2{font-family:var(--font-display);font-weight:800;font-size:clamp(32px,4.2vw,56px);color:#fff;letter-spacing:-.025em;line-height:1.02;}
+  .foot h2 em{font-style:normal;color:var(--gold);}
+  .foot .rows{margin-top:34px;}
+  .foot .r{display:flex;justify-content:space-between;align-items:center;max-width:460px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12);}
   .foot .r .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
   .foot .r .v{color:#EAF0F5;font-size:15.5px;}
-  .foot .r .v a{text-decoration:none;color:inherit;transition:color .2s;}
-  .foot .r .v a:hover{color:var(--gold-soft);}
-  .foot .wa-side{display:flex;flex-direction:column;gap:32px;justify-content:flex-start;}
-  .foot .wa-block{background:rgba(255,255,255,.96);border-radius:8px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:14px;width:fit-content;}
-  .foot .wa-block #qr-canvas{display:block;}
-  .foot .wa-scan{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);text-align:center;font-weight:500;}
-  .foot .wa-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:#25D366;color:#fff;padding:12px 20px;border-radius:3px;text-decoration:none;transition:opacity .2s;}
-  .foot .wa-btn:hover{opacity:.85;}
-  .foot .wa-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0;}
+  .foot .cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .foot .qr{border:1px solid rgba(255,255,255,.14);border-radius:6px;background:rgba(255,255,255,.04);padding:26px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;max-width:280px;}
+  .foot .qr img{width:160px;height:160px;background:#fff;padding:10px;border-radius:4px;display:block;}
+  .foot .qr .ql{font-family:var(--font-display);font-weight:700;font-size:17px;color:#fff;line-height:1.2;}
+  .foot .qr .qs{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-soft);margin-top:8px;}
   .foot .bottom{position:relative;display:flex;justify-content:space-between;align-items:center;padding-block:32px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;gap:18px;}
   .foot .bottom img{height:40px;}
   .foot .bottom .c{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:#8496A6;}
-  @media(max-width:760px){.foot .top{grid-template-columns:1fr;gap:40px;}.foot .wa-block{width:100%;align-items:center;}}
+  @media(max-width:760px){.foot .top{grid-template-columns:1fr;gap:44px;}.foot .qr{max-width:none;flex-direction:row;text-align:left;align-items:center;}}
 
-  /* ---------- reveal ---------- */
+  /* ---------- reveal animation ---------- */
   @media(prefers-reduced-motion:no-preference){
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
     .reveal.in{opacity:1;transform:none;}
     .reveal.d1{transition-delay:.08s;}.reveal.d2{transition-delay:.16s;}.reveal.d3{transition-delay:.24s;}.reveal.d4{transition-delay:.32s;}
     .hero .anim{opacity:0;transform:translateY(22px);animation:heroIn .8s cubic-bezier(.2,.7,.2,1) forwards;}
-    .hero .a1{animation-delay:.1s;}.hero .a2{animation-delay:.22s;}.hero .a3{animation-delay:.34s;}.hero .a4{animation-delay:.46s;}.hero .a5{animation-delay:.62s;}
-    .hero .chev-front,.hero .chev-back{opacity:0;animation:chevIn 1.1s cubic-bezier(.2,.7,.2,1) .2s forwards;}
-    .hero .chev-back{animation-delay:.34s;}
+    .hero .a1{animation-delay:.1s;}.hero .a2{animation-delay:.22s;}.hero .a3{animation-delay:.34s;}.hero .a4{animation-delay:.46s;}.hero .a5{animation-delay:.58s;}.hero .a6{animation-delay:.7s;}
+    .hero .chev-front{opacity:0;animation:chevInFront 1.1s cubic-bezier(.2,.7,.2,1) .25s forwards;}
     @keyframes heroIn{to{opacity:1;transform:none;}}
-    @keyframes chevIn{from{opacity:0;transform:translateY(-50%) translateX(40px);}}
-    .hero .chev-front{animation-name:chevInFront;}
-    @keyframes chevInFront{from{opacity:0;transform:translateY(-50%) translateX(40px);}to{opacity:.92;transform:translateY(-50%);}}
+    @keyframes chevInFront{from{opacity:0;transform:translateY(-50%) translateX(40px);}to{opacity:.16;transform:translateY(-50%);}}
+  }
+
+  /* ---------- touch: estados visibles ---------- */
+  @media(hover:none){
+    .svc::before{width:100%;}
+    .svc .cv{opacity:.6;}
+  }
+
+  /* ---------- mobile ---------- */
+  @media(max-width:680px){
+    .hero{display:block;min-height:0;}
+    .hero .inner{padding-top:132px;padding-bottom:52px;}
+    .hero .chev-front{display:none;}
+    .hero h1{font-size:clamp(40px,11vw,54px);}
+    .hero .meta{position:static;}
+    .hero .meta .row{flex-direction:column;gap:14px;padding-block:24px;}
+    .svc{padding:28px 24px 32px;}
+    section{padding-block:70px;}
+  }
+  @media(max-width:480px){
+    .hero .cta{flex-direction:column;align-items:stretch;}
+    .hero .cta .btn{justify-content:center;}
+    .foot .bottom{flex-direction:column;align-items:flex-start;}
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <header class="nav" id="nav">
   <div class="wrap row">
     <a class="logo" href="#top" aria-label="HINKO Ingeniería"><img src="assets/logo-knockout.png" alt="HINKO Ingeniería" /></a>
     <nav>
       <ul>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#porq">Por qué HINKO</a></li>
+        <li><a href="#porque">Por qué HINKO</a></li>
         <li><a href="#trabajo">Nuestro trabajo</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-      <a class="btn-wa" href="https://wa.me/573125808158" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.973-1.045zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
         WhatsApp
       </a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
   </div>
 </header>
 
 <div id="mobile-menu">
   <a class="lnk" href="#servicios">Servicios</a>
-  <a class="lnk" href="#porq">Por qué HINKO</a>
+  <a class="lnk" href="#porque">Por qué HINKO</a>
   <a class="lnk" href="#trabajo">Nuestro trabajo</a>
   <a class="lnk" href="#nosotros">Nosotros</a>
   <a class="lnk" href="#contacto">Contacto</a>
-  <a class="btn-wa" href="https://wa.me/573125808158" target="_blank" rel="noopener">
-    <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    Chatear por WhatsApp
-  </a>
+  <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener">Escríbenos por WhatsApp <span class="ar">→</span></a>
 </div>
 
 <!-- HERO -->
-<section class="hero" id="top" data-screen-label="Hero">
+<section class="hero" id="top">
+  <img class="bg" src="img/edificio.jpg" alt="" />
+  <div class="ov"></div>
   <div class="grid"></div>
-  <svg class="chev-back" viewBox="0 0 100 100" aria-hidden="true"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="none" stroke="#CD9A3A" stroke-width="1.4"/></svg>
   <svg class="chev-front" viewBox="0 0 100 100" aria-hidden="true"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg>
   <div class="wrap inner">
-    <div class="kick anim a1">Construcción · Ingeniería civil · Mantenimiento</div>
-    <h1 class="anim a2">Construimos con <em>precisión.</em></h1>
-    <p class="anim a3">HINKO Ingeniería ejecuta proyectos de construcción, impermeabilización e infraestructura civil con rigor técnico y garantía de obra.</p>
+    <div class="kick anim a1">Construcción · Ingeniería civil · Cuidado de edificios</div>
+    <h1 class="anim a2">Construimos y <em>cuidamos</em> su propiedad.</h1>
+    <p class="anim a3">De la obra nueva al mantenimiento integral: diseñamos, construimos y cuidamos edificaciones e infraestructura — con respaldo de ingeniería civil, garantía por escrito y cobertura en todo el país.</p>
     <div class="cta anim a4">
-      <a class="btn-wa" href="https://wa.me/573125808158" target="_blank" rel="noopener">
-        <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Hablemos de tu proyecto
+      <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.973-1.045zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Hablemos por WhatsApp
       </a>
-      <a class="btn ghost" href="#trabajo">Ver proyectos</a>
+      <a class="btn ghost" href="#servicios">Ver servicios</a>
+    </div>
+    <div class="aud anim a5">
+      <span>Conjuntos</span><span>Oficinas</span><span>Hoteles</span><span>Centros comerciales</span><span>Grandes superficies</span>
     </div>
   </div>
-  <div class="meta anim a5">
+  <div class="meta anim a6">
     <div class="wrap row">
-      <div class="item"><div class="l">Sede</div><div class="v">Bogotá · Colombia</div></div>
-      <div class="item"><div class="l">Alcance</div><div class="v">Diseño · Obra · Gerencia</div></div>
-      <div class="item"><div class="l">Enfoque</div><div class="v">Ingeniería que sostiene</div></div>
+      <div class="item"><div class="l">Cobertura</div><div class="v">Todo el país</div></div>
+      <div class="item"><div class="l">Trayectoria</div><div class="v">+8 años en ingeniería civil</div></div>
+      <div class="item"><div class="l">Respaldo</div><div class="v">Garantía por escrito</div></div>
       <div class="cue"><span class="dot"></span> Desliza</div>
     </div>
   </div>
 </section>
 
 <!-- SERVICIOS -->
-<section id="servicios" data-screen-label="Servicios">
+<section id="servicios">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
         <div class="rule"></div>
         <div class="kicker" style="margin-top:20px;">Servicios</div>
-        <h2 class="sec">Lo que construimos.</h2>
-        <p class="sec-lead">Soluciones integrales de ingeniería, de la planeación a la entrega y el mantenimiento.</p>
+        <h2 class="sec">De la obra nueva al<br />cuidado del día a día.</h2>
+        <p class="sec-lead">Cubrimos el ciclo completo de su propiedad: diseñamos y construimos edificaciones e infraestructura, y después las mantenemos en óptimo estado — todo con respaldo de ingeniería.</p>
       </div>
-      <div class="idx">04 disciplinas</div>
+      <div class="idx">Dos frentes</div>
     </div>
-    <div class="svc-grid">
+
+    <div class="svc-group reveal">
+      <div class="glabel"><span class="gnum">A</span><h3 class="gtitle">Construcción e ingeniería</h3></div>
+      <p class="gsub">Diseño, obra y gerencia de proyectos de edificación e infraestructura civil, de la planeación a la entrega.</p>
+    </div>
+    <div class="disc-grid">
+      <div class="disc reveal">
+        <div class="top"><div class="n">01</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h4>Construcción de edificaciones</h4><p>Proyectos residenciales, comerciales e institucionales con estándares de calidad y seguridad.</p>
+      </div>
+      <div class="disc reveal d1">
+        <div class="top"><div class="n">02</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h4>Infraestructura civil y vial</h4><p>Vías, pavimento rígido, obra civil, estructuras y urbanismo con respaldo técnico de principio a fin.</p>
+      </div>
+      <div class="disc reveal d2">
+        <div class="top"><div class="n">03</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h4>Diseño e ingeniería</h4><p>Estudios técnicos, estructurales y de viabilidad para fundamentar cada decisión.</p>
+      </div>
+      <div class="disc reveal d3">
+        <div class="top"><div class="n">04</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h4>Gerencia de proyectos</h4><p>Dirección, interventoría y control de obra para cumplir alcance, costo y plazo.</p>
+      </div>
+    </div>
+
+    <div class="svc-group reveal" style="margin-top:72px;">
+      <div class="glabel"><span class="gnum">B</span><h3 class="gtitle">Cuidado y mantenimiento de edificios</h3></div>
+      <p class="gsub">Para propiedades en operación — resolvemos el mantenimiento y la recuperación de raíz, sin frenar el día a día.</p>
+    </div>
+    <div class="svc-grid" style="margin-top:28px;">
       <div class="svc reveal">
         <div class="top"><div class="n">01</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
-        <h3>Impermeabilización y mantenimiento</h3>
-        <p>Cubierta, terrazas, sótanos y estructuras. Materiales certificados con garantía escrita de impermeabilidad.</p>
+        <h3>Impermeabilización y humedades</h3><p>Terrazas, cubiertas, sótanos y muros. Resolvemos la filtración de raíz.</p>
       </div>
       <div class="svc reveal d1">
         <div class="top"><div class="n">02</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
-        <h3>Infraestructura vial</h3>
-        <p>Vías, rampas, accesos y urbanismo. Desde el diagnóstico hasta la entrega con control de calidad propio.</p>
+        <h3>Reparación de fachadas</h3><p>Resane, estuco, pintura y recuperación de exteriores, con trabajo en alturas.</p>
+      </div>
+      <div class="svc reveal d2">
+        <div class="top"><div class="n">03</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h3>Mantenimiento integral</h3><p>Preventivo y correctivo, con planes anuales a la medida de su propiedad.</p>
+      </div>
+      <div class="svc reveal d3">
+        <div class="top"><div class="n">04</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h3>Adecuaciones y remodelaciones</h3><p>Oficinas, locales y zonas comunes, sin frenar la operación.</p>
       </div>
       <div class="svc reveal">
-        <div class="top"><div class="n">03</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
-        <h3>Construcción de edificaciones</h3>
-        <p>Proyectos residenciales, comerciales e institucionales ejecutados con estándares técnicos y seguridad HSE.</p>
+        <div class="top"><div class="n">05</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h3>Parqueaderos y zonas comunes</h3><p>Pisos, juntas, rampas, cubiertas y áreas compartidas, reforzadas.</p>
       </div>
       <div class="svc reveal d1">
-        <div class="top"><div class="n">04</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
-        <h3>Gerencia de proyectos</h3>
-        <p>Dirección, interventoría y control de obra. Cumplimiento de alcance, costo y plazo garantizado.</p>
+        <div class="top"><div class="n">06</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h3>Redes hidrosanitarias y eléctricas</h3><p>Diagnóstico, reparación y modernización de redes.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- POR QUÉ HINKO -->
-<section id="porq" class="porq" data-screen-label="Por qué HINKO">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="kicker">Por qué HINKO</div>
-      <h2 class="sec">Sellos que respaldan cada obra.</h2>
-      <p class="sec-lead">Cuatro compromisos que diferencian cada proyecto que ejecutamos.</p>
-    </div>
-    <div class="sellos">
-
-      <div class="sello reveal">
-        <span class="sel-n">01</span>
-        <div class="sel-ico">
-          <!-- shield check -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-soft)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
-          </svg>
-        </div>
-        <h4>Garantía de obra escrita</h4>
-        <p>Cada proyecto entregado incluye una garantía formal con términos claros, respaldo técnico y seguimiento post-obra.</p>
+      <div class="svc reveal d2">
+        <div class="top"><div class="n">07</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h3>Limpieza de espacios y fachadas</h3><p>Lavado y limpieza profunda de fachadas, zonas comunes y áreas de alto tránsito.</p>
       </div>
-
-      <div class="sello reveal d1">
-        <span class="sel-n">02</span>
-        <div class="sel-ico">
-          <!-- award / certificate -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-soft)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
-          </svg>
-        </div>
-        <h4>Materiales certificados</h4>
-        <p>Trabajamos únicamente con materiales de primera calidad con fichas técnicas y certificación de fabricante.</p>
+      <div class="svc reveal d3">
+        <div class="top"><div class="n">08</div><svg class="cv" viewBox="0 0 100 100"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg></div>
+        <h3>Urbanismo y exteriores</h3><p>Senderos, zonas verdes, gravillas, parqueaderos y espacios exteriores.</p>
       </div>
-
-      <div class="sello reveal d2">
-        <span class="sel-n">03</span>
-        <div class="sel-ico">
-          <!-- calendar / deadline -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-soft)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/>
-          </svg>
-        </div>
-        <h4>Cumplimiento de plazo</h4>
-        <p>Planificamos cada etapa con rigor y transparencia. El cronograma acordado se cumple o notificamos con anticipación.</p>
-      </div>
-
-      <div class="sello reveal d3">
-        <span class="sel-n">04</span>
-        <div class="sel-ico">
-          <!-- users / team -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold-soft)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <h4>Equipo propio especializado</h4>
-        <p>Cuadrillas propias con experiencia en obra, supervisión directa de ingenieros y control de calidad en sitio.</p>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- NUESTRO TRABAJO -->
-<section id="trabajo" data-screen-label="Nuestro trabajo">
+<section id="trabajo">
   <div class="wrap">
     <div class="sec-head reveal">
       <div>
         <div class="rule"></div>
         <div class="kicker" style="margin-top:20px;">Nuestro trabajo</div>
-        <h2 class="sec">Antes, durante y después.</h2>
-        <p class="sec-lead">Cada proyecto documenta su transformación completa, de la evaluación a la entrega final.</p>
+        <h2 class="sec">Resultados que se ven.</h2>
+        <p class="sec-lead">Del problema a la entrega. Estas son intervenciones reales, documentadas paso a paso.</p>
       </div>
-      <div class="idx">3 tipos de obra</div>
+      <div class="idx">Antes · Durante · Después</div>
     </div>
 
-    <div class="tipo-tabs reveal" role="tablist">
-      <button class="tipo-tab active" role="tab" aria-selected="true" data-panel="cubierta">Cubierta</button>
-      <button class="tipo-tab" role="tab" aria-selected="false" data-panel="rampa">Rampa</button>
-      <button class="tipo-tab" role="tab" aria-selected="false" data-panel="vial">Vial</button>
-    </div>
-
-    <!-- Cubierta -->
-    <div class="tipo-panel active" id="panel-cubierta" role="tabpanel">
-      <div class="fases-grid">
-        <div class="fase reveal">
-          <div class="fase-ph">Foto antes</div>
-          <div class="fase-lbl">
-            <div class="etapa">Antes</div>
-            <div class="nombre">Estado inicial</div>
-            <div class="desc">Diagnóstico de filtraciones, grietas y deterioro de la membrana existente.</div>
-          </div>
-        </div>
-        <div class="fase reveal d1">
-          <div class="fase-ph">Foto durante</div>
-          <div class="fase-lbl">
-            <div class="etapa">Durante</div>
-            <div class="nombre">Aplicación de membrana</div>
-            <div class="desc">Limpieza, imprimación y tendido de membrana impermeabilizante con traslapes certificados.</div>
-          </div>
-        </div>
-        <div class="fase reveal d2">
-          <div class="fase-ph">Foto después</div>
-          <div class="fase-lbl">
-            <div class="etapa">Después</div>
-            <div class="nombre">Cubierta rehabilitada</div>
-            <div class="desc">Entrega con prueba hidráulica, garantía escrita y protocolo de mantenimiento.</div>
-          </div>
-        </div>
+    <div class="xform reveal">
+      <div class="xhead"><div class="xt">Pavimento rígido · Infraestructura vial</div><div class="xs">Armado → Placa terminada</div></div>
+      <div class="roadrow">
+        <div class="xcell road"><span class="st">Armado y refuerzo</span><img src="img/vial-armado.jpg" alt="Armado de acero y dovelas para pavimento rígido" loading="lazy" /></div>
+        <div class="xcell road"><span class="st done">Terminado</span><img src="img/vial-placa.jpg" alt="Placa de pavimento rígido terminada" loading="lazy" /></div>
       </div>
     </div>
 
-    <!-- Rampa -->
-    <div class="tipo-panel" id="panel-rampa" role="tabpanel">
-      <div class="fases-grid">
-        <div class="fase reveal">
-          <div class="fase-ph">Foto antes</div>
-          <div class="fase-lbl">
-            <div class="etapa">Antes</div>
-            <div class="nombre">Pavimento deteriorado</div>
-            <div class="desc">Grietas, huecos y pérdida de pendiente que generan riesgo vial y daño vehicular.</div>
-          </div>
-        </div>
-        <div class="fase reveal d1">
-          <div class="fase-ph">Foto durante</div>
-          <div class="fase-lbl">
-            <div class="etapa">Durante</div>
-            <div class="nombre">Refuerzo estructural</div>
-            <div class="desc">Demolición controlada, nivelación de subbase y aplicación de concreto o asfalto de alta resistencia.</div>
-          </div>
-        </div>
-        <div class="fase reveal d2">
-          <div class="fase-ph">Foto después</div>
-          <div class="fase-lbl">
-            <div class="etapa">Después</div>
-            <div class="nombre">Rampa finalizada</div>
-            <div class="desc">Superficie uniforme, señalización y demarcación. Garantía estructural de dos años.</div>
-          </div>
-        </div>
+    <div class="xform reveal">
+      <div class="xhead"><div class="xt">Rampa de acceso vehicular</div><div class="xs">Antes → Durante → Después</div></div>
+      <div class="xrow">
+        <div class="xcell"><span class="st">Antes</span><img src="img/rampa-antes.jpg" alt="Antes — escaleras sin rampa" style="object-position:50% 62%;" loading="lazy" /></div>
+        <div class="xcell"><span class="st">Durante</span><img src="img/rampa.jpg" alt="Durante — fundida de la rampa" style="object-position:40% 55%;" loading="lazy" /></div>
+        <div class="xcell"><span class="st done">Después</span><img src="img/rampa-despues.jpg" alt="Después — rampa terminada" style="object-position:50% 58%;" loading="lazy" /></div>
       </div>
     </div>
 
-    <!-- Vial -->
-    <div class="tipo-panel" id="panel-vial" role="tabpanel">
-      <div class="fases-grid">
-        <div class="fase reveal">
-          <img class="fase-img" src="img/vial-armado.jpg" alt="Armado de vía — antes" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div class="fase-ph" style="display:none;">Foto antes</div>
-          <div class="fase-lbl">
-            <div class="etapa">Antes</div>
-            <div class="nombre">Armado y refuerzo</div>
-            <div class="desc">Instalación de refuerzo de acero y encofrado previo al vaciado de concreto.</div>
-          </div>
-        </div>
-        <div class="fase reveal d1">
-          <div class="fase-ph">Foto durante</div>
-          <div class="fase-lbl">
-            <div class="etapa">Durante</div>
-            <div class="nombre">Vaciado de concreto</div>
-            <div class="desc">Mezcla dosificada, vibrado y curado controlado para garantizar resistencia a la compresión.</div>
-          </div>
-        </div>
-        <div class="fase reveal d2">
-          <img class="fase-img" src="img/vial-placa.jpg" alt="Vía finalizada — después" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-          <div class="fase-ph" style="display:none;">Foto después</div>
-          <div class="fase-lbl">
-            <div class="etapa">Después</div>
-            <div class="nombre">Placa de concreto</div>
-            <div class="desc">Vía terminada con juntas de dilatación, acabado liso y señalización de tráfico.</div>
-          </div>
-        </div>
+    <div class="xform reveal">
+      <div class="xhead"><div class="xt">Cubierta metálica</div><div class="xs">Antes → Durante → Después</div></div>
+      <div class="xrow">
+        <div class="xcell"><span class="st">Antes</span><img src="img/cubierta-antes.jpg" alt="Antes — cubierta deteriorada" style="object-position:50% 55%;" loading="lazy" /></div>
+        <div class="xcell"><span class="st">Durante</span><img src="img/cubierta-durante.jpg" alt="Durante — trabajo seguro en alturas con EPP" style="object-position:50% 50%;" loading="lazy" /></div>
+        <div class="xcell"><span class="st done">Después</span><img src="img/cubierta-despues.jpg" alt="Después — cubierta pintada y sellada" style="object-position:50% 62%;" loading="lazy" /></div>
       </div>
     </div>
 
+    <div class="pairgrid">
+      <div class="pcard reveal"><div class="imwrap"><img src="img/edificio.jpg" alt="Edificio y urbanismo" style="object-position:50% 35%;" loading="lazy" /></div><div class="cap"><b>Edificación y urbanismo</b> · Fachada y exteriores</div></div>
+      <div class="pcard reveal d1"><div class="imwrap"><img src="img/fachada.jpg" alt="Pintura de fachada" style="object-position:50% 38%;" loading="lazy" /></div><div class="cap"><b>Recuperación de fachada</b> · Pintura y resane</div></div>
+    </div>
   </div>
 </section>
 
-<!-- NOSOTROS -->
-<section id="nosotros" data-screen-label="Nosotros">
+<!-- POR QUÉ HINKO -->
+<section id="porque" class="why">
+  <svg class="glow" viewBox="0 0 100 100" aria-hidden="true"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg>
   <div class="wrap">
-    <div class="sec-head reveal">
-      <div>
-        <div class="rule"></div>
-        <div class="kicker" style="margin-top:20px;">Nosotros</div>
-        <h2 class="sec">Cómo trabajamos.</h2>
-        <p class="sec-lead">Un proceso claro y transparente, del diagnóstico a la garantía de entrega.</p>
+    <div class="reveal">
+      <div class="kicker">Por qué HINKO</div>
+      <h2 class="sec">No es un todero. <em>Es ingeniería.</em></h2>
+    </div>
+    <div class="pts">
+      <div class="pt reveal"><b>Respaldo de ingeniería</b><span>Diagnóstico y ejecución con criterio técnico.</span></div>
+      <div class="pt reveal d1"><b>Garantía por escrito</b><span>Respondemos por cada trabajo entregado.</span></div>
+      <div class="pt reveal d2"><b>Cobertura nacional</b><span>Atendemos propiedades en todo el país.</span></div>
+      <div class="pt reveal d3"><b>Obra sin interrumpir</b><span>Programación que respeta su operación.</span></div>
+    </div>
+    <div class="seals">
+      <div class="seal reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/></svg><div><b>Póliza de cumplimiento</b><span>Respaldo contractual</span></div></div>
+      <div class="seal reveal d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg><div><b>ARL vigente</b><span>Personal afiliado</span></div></div>
+      <div class="seal reveal d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h11l3 3v13H5z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg><div><b>Garantía por escrito</b><span>En cada trabajo</span></div></div>
+      <div class="seal reveal d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="6" r="2"/><path d="M12 8v5m0 0l-4 7m4-7l4 7M7 11l5-1 5 1"/></svg><div><b>Trabajo seguro en alturas</b><span>Personal certificado</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO + NOSOTROS -->
+<section id="nosotros" class="proc">
+  <div class="wrap cols">
+    <div class="reveal">
+      <div class="rule"></div>
+      <div class="kicker" style="margin-top:20px;">Quiénes somos</div>
+      <h2 class="sec">Ingeniería con método y tecnología.</h2>
+      <p class="about-lead">HINKO Ingeniería nace de la experiencia de cuatro profesionales con más de 8 años en ingeniería civil. Combinamos conocimiento técnico, innovación y tecnología para cuidar edificios en operación con soluciones eficientes, sostenibles y a la medida de cada cliente.</p>
+      <div class="stats">
+        <div class="st"><div class="big">+8 <em>años</em></div><div class="lb">De trayectoria en<br />ingeniería civil</div></div>
+        <div class="st"><div class="big">4</div><div class="lb">Profesionales<br />fundadores</div></div>
+        <div class="st"><div class="big">Nacional</div><div class="lb">Cobertura en<br />todo el país</div></div>
       </div>
     </div>
-    <div class="nos-cols">
-      <div class="proceso reveal">
-        <div class="paso">
-          <div class="num">01</div>
-          <div class="paso-cont">
-            <h4>Diagnóstico</h4>
-            <p>Visita técnica gratuita para evaluar el estado actual de la obra, identificar patologías y definir el alcance del trabajo.</p>
-          </div>
-        </div>
-        <div class="paso">
-          <div class="num">02</div>
-          <div class="paso-cont">
-            <h4>Diseño y propuesta</h4>
-            <p>Elaboramos una propuesta técnico-económica detallada con materiales, cronograma y garantías específicas para su proyecto.</p>
-          </div>
-        </div>
-        <div class="paso">
-          <div class="num">03</div>
-          <div class="paso-cont">
-            <h4>Ejecución</h4>
-            <p>Cuadrillas propias, supervisión de ingenieros en sitio, reporte fotográfico de avance y control de calidad en cada etapa.</p>
-          </div>
-        </div>
-        <div class="paso">
-          <div class="num">04</div>
-          <div class="paso-cont">
-            <h4>Entrega y garantía</h4>
-            <p>Prueba técnica de resultado, acta de entrega con especificaciones y garantía escrita con protocolo de mantenimiento.</p>
-          </div>
-        </div>
-      </div>
-      <div class="nos-stats reveal d1">
-        <div class="stat-big">
-          <div class="n">+<em>8</em></div>
-          <div class="l">Años de experiencia en obra civil</div>
-        </div>
-        <div class="stat-big">
-          <div class="n">+<em>60</em></div>
-          <div class="l">Proyectos ejecutados en Bogotá y Cundinamarca</div>
-        </div>
-        <div class="stat-big">
-          <div class="n"><em>100</em>%</div>
-          <div class="l">De las obras entregadas con garantía escrita</div>
-        </div>
-        <div class="stat-big">
-          <div class="n" style="font-size:clamp(30px,3.8vw,48px);letter-spacing:-.02em;line-height:1.1;">Bogotá<em style="color:var(--gold);font-style:normal;"> +</em></div>
-          <div class="l">Cundinamarca — Cobertura regional</div>
-        </div>
+    <div class="reveal d1">
+      <div class="kicker">Cómo trabajamos</div>
+      <h2 class="sec" style="font-size:clamp(28px,3.4vw,42px);">De la visita a la garantía.</h2>
+      <div class="steps" style="margin-top:28px;">
+        <div class="step"><div class="sn">01</div><div><b>Visita</b><span>Vamos a su propiedad y evaluamos en sitio.</span></div></div>
+        <div class="step"><div class="sn">02</div><div><b>Diagnóstico</b><span>Hallamos el origen del problema con criterio técnico.</span></div></div>
+        <div class="step"><div class="sn">03</div><div><b>Cotización</b><span>Propuesta clara, sin sorpresas ni costos ocultos.</span></div></div>
+        <div class="step"><div class="sn">04</div><div><b>Ejecución</b><span>Obra con garantía por escrito y cumplimiento.</span></div></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACTO / FOOTER -->
-<footer id="contacto" class="foot" data-screen-label="Contacto">
+<footer id="contacto" class="foot">
   <svg class="glow" viewBox="0 0 100 100" aria-hidden="true"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg>
   <div class="wrap">
     <div class="top">
       <div class="reveal">
-        <div class="kicker">Contacto</div>
-        <h2 style="margin-top:16px;">Cuide su<br>patrimonio.</h2>
+        <div class="kicker" style="color:var(--gold);">Contacto</div>
+        <h2 style="margin-top:16px;">Cuidemos juntos<br />su <em>propiedad.</em></h2>
         <div class="rows">
-          <div class="r"><span class="k">Web</span><span class="v"><a href="https://hinko.co" target="_blank" rel="noopener">hinko.co</a></span></div>
-          <div class="r"><span class="k">Teléfono</span><span class="v"><a href="tel:+573125808158">+57 312 580 8158</a></span></div>
-          <div class="r"><span class="k">Cobertura</span><span class="v">Bogotá · Cundinamarca</span></div>
+          <div class="r"><span class="k">Web</span><span class="v">hinko.co</span></div>
+          <div class="r"><span class="k">Teléfono · WhatsApp</span><span class="v">+57 318 349 3168</span></div>
+          <div class="r"><span class="k">Cobertura</span><span class="v">Todo el país</span></div>
         </div>
-        <a class="btn-wa" href="https://wa.me/573125808158" target="_blank" rel="noopener" style="margin-top:32px;font-size:13px;padding:15px 24px;">
-          <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Escríbenos ahora
-        </a>
+        <div class="cta-row">
+          <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.515 5.26l-.999 3.648 3.973-1.045zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            Escríbenos por WhatsApp
+          </a>
+          <a class="btn ghost" href="mailto:nicolas@hinko.co">Correo</a>
+        </div>
       </div>
-      <div class="wa-side reveal d1">
-        <div class="wa-block">
-          <canvas id="qr-canvas"></canvas>
-          <div class="wa-scan">Escanee y chateé ya</div>
+      <div class="qr reveal d1">
+        <img src="img/qr-whatsapp.png" alt="Código QR para escribir a HINKO por WhatsApp" />
+        <div>
+          <div class="ql">Escanee y<br />chatee ya</div>
+          <div class="qs">Atención directa por WhatsApp</div>
         </div>
-        <a class="wa-btn" href="https://wa.me/573125808158" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          +57 312 580 8158
-        </a>
       </div>
     </div>
     <div class="bottom">
@@ -573,63 +520,21 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <script>
-  /* nav scroll */
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>40);
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  /* mobile menu */
-  const mt = document.getElementById('menuToggle');
-  const closeMenu = () => { document.body.classList.remove('menu-open'); mt.setAttribute('aria-expanded','false'); };
-  mt.addEventListener('click', () => {
-    const open = document.body.classList.toggle('menu-open');
-    mt.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
+  const mt=document.getElementById('menuToggle');
+  const closeMenu=()=>{document.body.classList.remove('menu-open');mt.setAttribute('aria-expanded','false');};
+  mt.addEventListener('click',()=>{const open=document.body.classList.toggle('menu-open');mt.setAttribute('aria-expanded',open?'true':'false');});
+  document.querySelectorAll('#mobile-menu a').forEach(a=>a.addEventListener('click',closeMenu));
+  window.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 
-  /* intersection reveal */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  /* tipo tabs */
-  document.querySelectorAll('.tipo-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tipo-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-      document.querySelectorAll('.tipo-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active'); tab.setAttribute('aria-selected','true');
-      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
-    });
-  });
-
-  /* WhatsApp QR code */
-  (function() {
-    try {
-      const qr = qrcode(0, 'M');
-      qr.addData('https://wa.me/573125808158');
-      qr.make();
-      const canvas = document.getElementById('qr-canvas');
-      const cell = 4;
-      const mod = qr.getModuleCount();
-      const size = mod * cell;
-      canvas.width = size; canvas.height = size;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0, 0, size, size);
-      ctx.fillStyle = '#001C38';
-      for (let r = 0; r < mod; r++) {
-        for (let c = 0; c < mod; c++) {
-          if (qr.isDark(r, c)) ctx.fillRect(c * cell, r * cell, cell, cell);
-        }
-      }
-    } catch(e) {
-      const canvas = document.getElementById('qr-canvas');
-      if (canvas) canvas.parentElement.style.display = 'none';
-    }
-  })();
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
