@@ -533,7 +533,7 @@
         </div>
       </div>
       <div class="reg-right reveal d1">
-        <form class="reg-form" id="reg-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form class="reg-form" id="reg-form" action="https://app.hinko.co/api/landing-prospecto" method="POST">
           <div class="form-row">
             <div class="form-field"><label for="f-nombre">Nombre completo *</label><input type="text" id="f-nombre" name="nombre" placeholder="Su nombre" required /></div>
             <div class="form-field"><label for="f-empresa">Empresa / Propiedad *</label><input type="text" id="f-empresa" name="empresa" placeholder="Nombre de la empresa o propiedad" required /></div>
@@ -635,8 +635,8 @@
       formSubmit.disabled = true;
       formSubmit.textContent = 'Enviando…';
       try{
-        const data = new FormData(regForm);
-        const res = await fetch(regForm.action, {method:'POST',body:data,headers:{'Accept':'application/json'}});
+        const data = Object.fromEntries(new FormData(regForm));
+        const res = await fetch(regForm.action, {method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
         if(res.ok){ regForm.style.display='none'; formSuccess.style.display='block'; }
         else { throw new Error('server'); }
       } catch(err){
