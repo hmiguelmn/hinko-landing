@@ -214,6 +214,37 @@
   .foot .bottom .c{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:#8496A6;}
   @media(max-width:760px){.foot .top{grid-template-columns:1fr;gap:44px;}.foot .qr{max-width:none;flex-direction:row;text-align:left;align-items:center;}}
 
+  /* ---------- registro / cotización ---------- */
+  .reg-section{background:var(--paper);border-top:1px solid var(--mist);}
+  .reg-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(48px,7vw,96px);align-items:start;}
+  .reg-left .sec{max-width:14ch;}
+  .reg-steps{display:flex;flex-direction:column;gap:0;margin-top:36px;}
+  .reg-step{display:flex;align-items:flex-start;gap:18px;padding:18px 0;border-bottom:1px solid var(--mist);}
+  .reg-step:last-child{border-bottom:0;}
+  .reg-step-n{font-family:var(--font-mono);font-size:12px;color:var(--gold-deep);letter-spacing:.16em;min-width:30px;padding-top:4px;}
+  .reg-step b{display:block;font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--navy);letter-spacing:-.01em;}
+  .reg-step span{display:block;color:var(--graphite);font-size:14px;margin-top:5px;}
+  .reg-right{background:#fff;border:1px solid var(--mist);border-radius:6px;padding:clamp(28px,4vw,48px);box-shadow:0 12px 40px -20px rgba(0,28,56,.1);}
+  .reg-form{display:flex;flex-direction:column;gap:20px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .form-field{display:flex;flex-direction:column;gap:8px;}
+  .form-field label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--graphite);font-weight:500;}
+  .form-field input,.form-field select,.form-field textarea{font-family:var(--font-body);font-size:15px;color:var(--navy);background:#FAFAF8;border:1.5px solid var(--mist);border-radius:3px;padding:13px 16px;outline:none;transition:border-color .2s,box-shadow .2s;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;}
+  .form-field input::placeholder,.form-field textarea::placeholder{color:#B4C0CC;}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(205,154,58,.13);background:#fff;}
+  .form-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237E92A4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;background-color:#FAFAF8;padding-right:40px;cursor:pointer;}
+  .form-field textarea{resize:vertical;min-height:100px;line-height:1.6;}
+  .form-btn{width:100%;justify-content:center;font-size:14px;padding:18px 28px;margin-top:4px;}
+  .form-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none;}
+  .form-note{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#A9B6C2;margin:0;text-align:center;}
+  .form-error-msg{font-family:var(--font-mono);font-size:11.5px;color:#B94040;background:#FDF2F2;border:1px solid #F0CCCC;border-radius:3px;padding:12px 16px;margin:0;display:none;}
+  .form-success{text-align:center;padding:48px 24px;display:none;}
+  .form-success .chk{width:64px;height:64px;margin:0 auto 24px;display:block;}
+  .form-success h3{font-family:var(--font-display);font-weight:800;font-size:26px;color:var(--navy);margin:0 0 12px;letter-spacing:-.015em;}
+  .form-success p{color:var(--graphite);font-size:16px;margin:0 0 28px;}
+  @media(max-width:860px){.reg-grid{grid-template-columns:1fr;}}
+  @media(max-width:520px){.form-row{grid-template-columns:1fr;}}
+
   /* ---------- reveal animation ---------- */
   @media(prefers-reduced-motion:no-preference){
     .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
@@ -261,6 +292,7 @@
         <li><a href="#porque">Por qué HINKO</a></li>
         <li><a href="#trabajo">Nuestro trabajo</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#cotizar" style="color:var(--gold-soft);font-weight:600;">Cotizar</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener">
@@ -277,6 +309,7 @@
   <a class="lnk" href="#porque">Por qué HINKO</a>
   <a class="lnk" href="#trabajo">Nuestro trabajo</a>
   <a class="lnk" href="#nosotros">Nosotros</a>
+  <a class="lnk" href="#cotizar" style="color:var(--gold-soft);font-weight:700;">Cotizar ›</a>
   <a class="lnk" href="#contacto">Contacto</a>
   <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener">Escríbenos por WhatsApp <span class="ar">→</span></a>
 </div>
@@ -484,6 +517,61 @@
   </div>
 </section>
 
+<!-- REGISTRO / COTIZACIÓN -->
+<section id="cotizar" class="reg-section" data-screen-label="Solicitar visita">
+  <div class="wrap">
+    <div class="reg-grid">
+      <div class="reg-left reveal">
+        <div class="rule"></div>
+        <div class="kicker" style="margin-top:20px;">Hablemos</div>
+        <h2 class="sec">Cuéntenos su proyecto.<br/>Le contactamos<br/><em style="font-style:normal;color:var(--gold);">sin costo.</em></h2>
+        <p class="sec-lead" style="margin-top:22px;">Complete el formulario y un ingeniero de HINKO lo contactará para conocer más sobre su proyecto y orientarle sin compromiso.</p>
+        <div class="reg-steps">
+          <div class="reg-step"><div class="reg-step-n">01</div><div><b>Deje sus datos</b><span>Formulario breve, solo lo esencial.</span></div></div>
+          <div class="reg-step"><div class="reg-step-n">02</div><div><b>Le contactamos</b><span>Un ingeniero de HINKO se comunicará con usted.</span></div></div>
+          <div class="reg-step"><div class="reg-step-n">03</div><div><b>Hablamos de su proyecto</b><span>Nos cuenta su necesidad y exploramos cómo ayudarle.</span></div></div>
+        </div>
+      </div>
+      <div class="reg-right reveal d1">
+        <form class="reg-form" id="reg-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-field"><label for="f-nombre">Nombre completo *</label><input type="text" id="f-nombre" name="nombre" placeholder="Su nombre" required /></div>
+            <div class="form-field"><label for="f-empresa">Empresa / Propiedad *</label><input type="text" id="f-empresa" name="empresa" placeholder="Nombre de la empresa o propiedad" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-field"><label for="f-tel">Teléfono *</label><input type="tel" id="f-tel" name="telefono" placeholder="+57 300 000 0000" required /></div>
+            <div class="form-field"><label for="f-email">Correo electrónico *</label><input type="email" id="f-email" name="email" placeholder="correo@empresa.com" required /></div>
+          </div>
+          <div class="form-field"><label for="f-ciudad">Ciudad *</label><input type="text" id="f-ciudad" name="ciudad" placeholder="Bogotá, Medellín, Cali…" required /></div>
+          <div class="form-field">
+            <label for="f-servicio">Tipo de servicio</label>
+            <select id="f-servicio" name="servicio">
+              <option value="" disabled selected>Seleccione un servicio…</option>
+              <option value="mantenimiento">Mantenimiento y cuidado de edificio</option>
+              <option value="impermeabilizacion">Impermeabilización y humedades</option>
+              <option value="fachada">Reparación de fachadas</option>
+              <option value="construccion">Construcción nueva</option>
+              <option value="infraestructura">Infraestructura civil y vial</option>
+              <option value="remodelacion">Adecuaciones y remodelaciones</option>
+              <option value="otro">Otro / No estoy seguro</option>
+            </select>
+          </div>
+          <div class="form-field"><label for="f-msg">Cuéntenos más (opcional)</label><textarea id="f-msg" name="mensaje" rows="4" placeholder="Describa brevemente su propiedad o necesidad…"></textarea></div>
+          <p class="form-error-msg" id="form-error">Ocurrió un error al enviar. Intente de nuevo o escríbanos por WhatsApp.</p>
+          <button type="submit" class="btn form-btn" id="form-submit">Hablemos de su proyecto <span class="ar">→</span></button>
+          <p class="form-note">Sus datos son confidenciales y solo se usan para contactarle.</p>
+        </form>
+        <div class="form-success" id="form-success">
+          <svg class="chk" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="31" stroke="#CD9A3A" stroke-width="2"/><path d="M20 32l9 9 15-15" stroke="#CD9A3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>¡Recibimos su solicitud!</h3>
+          <p>Un ingeniero de HINKO le contactará para que nos cuente más sobre su proyecto.</p>
+          <a class="btn" href="https://wa.me/573183493168" target="_blank" rel="noopener" style="display:inline-flex;">También por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACTO / FOOTER -->
 <footer id="contacto" class="foot">
   <svg class="glow" viewBox="0 0 100 100" aria-hidden="true"><path d="M57.3 19.4 L78.5 19.4 L41.4 50 L80 80.6 L58.7 80.6 L20 50 Z" fill="#CD9A3A"/></svg>
@@ -535,6 +623,29 @@
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const regForm = document.getElementById('reg-form');
+  const formSuccess = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
+  const formSubmit = document.getElementById('form-submit');
+  if(regForm){
+    regForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      formError.style.display = 'none';
+      formSubmit.disabled = true;
+      formSubmit.textContent = 'Enviando…';
+      try{
+        const data = new FormData(regForm);
+        const res = await fetch(regForm.action, {method:'POST',body:data,headers:{'Accept':'application/json'}});
+        if(res.ok){ regForm.style.display='none'; formSuccess.style.display='block'; }
+        else { throw new Error('server'); }
+      } catch(err){
+        formError.style.display = 'block';
+        formSubmit.disabled = false;
+        formSubmit.innerHTML = 'Hablemos de su proyecto <span class="ar">→</span>';
+      }
+    });
+  }
 </script>
 </body>
 </html>
