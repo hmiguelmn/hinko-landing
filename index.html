@@ -649,7 +649,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       try{
         const data = Object.fromEntries(new FormData(regForm));
         const res = await fetch(regForm.action, {method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
-        if(res.ok){ regForm.style.display='none'; formSuccess.style.display='block'; }
+        if(res.ok){
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            'event': 'formulario_enviado',
+            'servicio': data.servicio || ''
+          });
+          regForm.style.display='none'; formSuccess.style.display='block';
+        }
         else { throw new Error('server'); }
       } catch(err){
         formError.style.display = 'block';
