@@ -34,6 +34,7 @@ hinko-landing/
   site.js             # comportamiento compartido
   vercel.json         # cleanUrls (sin .html en la URL)
   sitemap.xml · robots.txt
+  .vercelignore       # evita que Vercel publique CLAUDE.md
   assets/
     favicon.svg
     logo-knockout.png  # logo blanco para fondos oscuros (nav + footer)
@@ -92,15 +93,17 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 | Página | Secciones |
 |---|---|
 | `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` · `#trabajo` · `#porque` · `#nosotros` · `#contacto` (formulario completo) |
-| `nosotros.html` | Hero corto · `#historia` (+ stats) · `#principios` · `#metodo` · `#equipo` · `#servicios` · CTA. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
-| `contacto.html` | Hero corto · `#contactar` (WhatsApp, teléfono, QR, correos del equipo + formulario completo) · `#cobertura` · `#faq` |
+| `nosotros.html` | Hero corto · `#historia` (+ stats) · `#principios` · `#metodo` · `#servicios` · CTA. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
+| `contacto.html` | Hero corto · `#contactar` (WhatsApp, teléfono, correo, QR + formulario completo) · `#cobertura` · `#faq` |
 | Páginas de servicio | Hero + formulario · `#problema` · `#incluye` · `#para-quien` (+ entregables) · `#trabajo` (si hay fotos) · `#proceso` · `#porque` · `#faq` (JSON-LD FAQPage) · CTA · `#otros` |
 
 Cada página de servicio corresponde a una campaña Search de Google Ads.
 
 **Datos del negocio usados en el sitio (vienen del Brandkit V2):** plan anual de mantenimiento con pago mensual (niveles básico, estándar, integral) · emergencias en máx. 48 h · garantía de 6 meses por escrito en el plan · visita de diagnóstico sin costo · +8 años en ingeniería civil · cobertura nacional · Tel/WhatsApp +57 318 349 3168.
 
-**Equipo:** Nicolás Luengas (nicolas@hinko.co) · Henry Muñoz (henry@hinko.co) · Julián Castellanos (julian@hinko.co)
+**Regla de contenido:** no mostrar nombres ni cargos del equipo en el sitio (la empresa debe verse institucional). Correo público: nicolas@hinko.co.
+
+**Equipo (solo referencia interna):** Nicolás Luengas (nicolas@hinko.co) · Henry Muñoz (henry@hinko.co) · Julián Castellanos (julian@hinko.co)
 
 ## Formularios y medición
 
