@@ -10,7 +10,7 @@ Sitio web institucional de HINKO Ingeniería. HTML/CSS estático, sin framework 
 
 | Capa | Tecnología |
 |------|-----------|
-| Markup | HTML5 estático (home + 4 páginas de servicio) |
+| Markup | HTML5 estático (home, 4 páginas de servicio, Nosotros y Contacto) |
 | Estilos | CSS3 puro: variables en `brand.css`, componentes en `site.css` |
 | JS | `site.js` compartido (nav, reveal, formularios, UTM, eventos GTM) |
 | Fuentes | Google Fonts — Archivo · IBM Plex Sans · IBM Plex Mono |
@@ -27,6 +27,8 @@ hinko-landing/
   adecuaciones-remodelaciones.html # → hinko.co/adecuaciones-remodelaciones
   consultoria-interventoria.html   # → hinko.co/consultoria-interventoria
   cargadores-electricos.html       # → hinko.co/cargadores-electricos
+  nosotros.html                    # → hinko.co/nosotros
+  contacto.html                    # → hinko.co/contacto (formulario completo)
   brand.css           # variables CSS del sistema de marca compartido
   site.css            # estilos de todas las páginas
   site.js             # comportamiento compartido
@@ -90,6 +92,8 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 | Página | Secciones |
 |---|---|
 | `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` · `#trabajo` · `#porque` · `#nosotros` · `#contacto` (formulario completo) |
+| `nosotros.html` | Hero corto · `#historia` (+ stats) · `#principios` · `#metodo` · `#equipo` · `#servicios` · CTA. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
+| `contacto.html` | Hero corto · `#contactar` (WhatsApp, teléfono, QR, correos del equipo + formulario completo) · `#cobertura` · `#faq` |
 | Páginas de servicio | Hero + formulario · `#problema` · `#incluye` · `#para-quien` (+ entregables) · `#trabajo` (si hay fotos) · `#proceso` · `#porque` · `#faq` (JSON-LD FAQPage) · CTA · `#otros` |
 
 Cada página de servicio corresponde a una campaña Search de Google Ads.
