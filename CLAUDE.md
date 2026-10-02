@@ -66,50 +66,45 @@ Variables CSS compartidas con el brandkit de HINKO:
 
 ---
 
-## Secciones
+## Diseño
 
-| ID | Sección |
-|----|---------|
-| `#top` | Hero (fullscreen, navy + chevron dorado doble + grid técnica + meta bar) |
-| `#servicios` | Grid 2×2 de servicios con animación de borde dorado |
-| `#sostenibilidad` | Dos columnas: stats en cards + placeholder de imagen |
-| `#proyectos` | Portafolio 3 columnas con numeración P—01/02/03 (placeholders) |
-| `#contacto` | Footer con datos de contacto, CTA de correo y equipo |
+Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `site.css` y `site.js`; el header, el footer y la barra móvil se repiten como HTML estático en cada página (no hay plantillas).
+
+| Componente | Clases |
+|---|---|
+| Header fijo con desplegable de servicios, teléfono y botón "Agendar visita" | `header.nav`, `.dd/.ddm`, `.tel`, `#mobile-menu` |
+| Hero navy con foto, grid técnica, chevron y barra de datos | `.hero`, `.hero.home`, `.hero-cols`, `.facts` |
+| Formulario de visita (tarjeta blanca con borde dorado) | `.fcard#agendar`, `form.hk-form`, `.ff`, `.frow`, `.fok` |
+| Problema + tarjeta de riesgo | `.prob`, `.plist`, `.risk` |
+| Alcance | `.scope` (lista) o `.cgrid` + `.cc` (tarjetas) |
+| Plan anual con 3 niveles | `.plan`, `.tier` |
+| Para quién | `.aud` |
+| Galería antes/durante/después | `.xhead`, `.xrow`, `.xcell` |
+| Pasos | `.steps` |
+| Banda navy "Por qué HINKO" | `.why`, `.pts`, `.seals` |
+| FAQ | `.faqw`, `.faq details` |
+| CTA, otros servicios, footer, barra móvil (Llamar · WhatsApp · Agendar) | `.ctab`, `.cross`, `.foot`, `.abar` |
+
+## Páginas
+
+| Página | Secciones |
+|---|---|
+| `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` · `#trabajo` · `#porque` · `#nosotros` · `#contacto` (formulario completo) |
+| Páginas de servicio | Hero + formulario · `#problema` · `#incluye` · `#para-quien` (+ entregables) · `#trabajo` (si hay fotos) · `#proceso` · `#porque` · `#faq` (JSON-LD FAQPage) · CTA · `#otros` |
+
+Cada página de servicio corresponde a una campaña Search de Google Ads.
+
+**Datos del negocio usados en el sitio (vienen del Brandkit V2):** plan anual de mantenimiento con pago mensual (niveles básico, estándar, integral) · emergencias en máx. 48 h · garantía de 6 meses por escrito en el plan · visita de diagnóstico sin costo · +8 años en ingeniería civil · cobertura nacional · Tel/WhatsApp +57 318 349 3168.
 
 **Equipo:** Nicolás Luengas (nicolas@hinko.co) · Henry Muñoz (henry@hinko.co) · Julián Castellanos (julian@hinko.co)
 
-### Páginas de servicio (landing pages de Google Ads)
+## Formularios y medición
 
-Cada una corresponde a una campaña Search y sigue la misma estructura:
-Hero con H1 + formulario (`#cotizar`) → banda de confianza → `#problemas` → `#incluye` → `#modalidades` (3 planes + sectores) → `#entregables` → `#trabajo` (si hay fotos) → `#proceso` → `#porque` → `#faq` (con JSON-LD FAQPage) → CTA final → otros servicios → footer. En móvil hay barra fija (`.mbar`) con WhatsApp + Cotizar.
-
-**Formularios:** todos usan `form.reg-form` y `site.js`. El campo `servicio` va oculto por página (`mantenimiento`, `remodelacion`, `consultoria`, `cargadores`). El select con `data-extra` y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM (`api/landing-prospecto.js` en hinko-ingenieria) solo guarda los campos que conoce. Eventos dataLayer: `formulario_enviado` (servicio, pagina) y `whatsapp_click` (pagina).
-
----
-
-## Componentes y patrones
-
-**Nav**
-- Fijo en la parte superior; pasa de transparente a `rgba(0,22,46,.92)` con blur al hacer scroll (>40px)
-- Logo: 52px inicial → 42px al hacer scroll; altura del row: 92px → 74px
-- Links con animación de subrayado dorado deslizante en hover
-- Menú hamburguesa (≤980px) con panel `#mobile-menu` que se desliza desde arriba
-
-**Hero**
-- Doble chevron: `chev-front` (sólido, opacity .92) + `chev-back` (calado stroke, opacity .10)
-- Grid técnica de líneas finas con máscara radial
-- Kick line con barra dorada `::before`
-- Meta bar inferior con tres datos (Sede · Alcance · Enfoque) + punto pulsante "Desliza"
-- Animaciones de entrada escalonadas `.anim.a1`–`.a5` (respetan `prefers-reduced-motion`)
-
-**Reveal animation**
-- Clase `.reveal` → `.reveal.in` activada por `IntersectionObserver` (threshold 16%)
-- Clases `.d1`–`.d4` para delays escalonados (0.08s cada uno)
-
-**Placeholders a completar**
-- Cifras de sostenibilidad (`00%`, `00`) — reemplazar con datos reales
-- Imágenes de proyectos (`.proj`) — reemplazar el fondo de rayas por fotos/renders
-- Imagen de obra en sección sostenibilidad (`.sost .visual`)
+- Todos los formularios son `form.hk-form` y envían JSON a `https://app.hinko.co/api/landing-prospecto` (CRM, repo hinko-ingenieria). Campos requeridos por el CRM: nombre, empresa, telefono, email, ciudad.
+- En páginas de servicio, `servicio` va oculto (`mantenimiento`, `remodelacion`, `consultoria`, `cargadores`); en la home es un select.
+- El select con `data-extra` (tipo de propiedad, necesidad…) y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM solo guarda los campos que conoce.
+- Eventos dataLayer: `formulario_enviado` y `generate_lead` (servicio, pagina) al enviar; `call`, `whatsapp`, `agendar_click` en clics (atributo `data-ev`).
+- El CRM solo acepta envíos desde `hinko.co`: en previews de Vercel el formulario muestra error.
 
 ---
 
