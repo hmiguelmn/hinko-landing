@@ -10,8 +10,9 @@ Sitio web institucional de HINKO Ingeniería. HTML/CSS estático, sin framework 
 
 | Capa | Tecnología |
 |------|-----------|
-| Markup | HTML5 estático (`index.html`) |
-| Estilos | CSS3 puro + variables en `brand.css` |
+| Markup | HTML5 estático (home + 4 páginas de servicio) |
+| Estilos | CSS3 puro: variables en `brand.css`, componentes en `site.css` |
+| JS | `site.js` compartido (nav, reveal, formularios, UTM, eventos GTM) |
 | Fuentes | Google Fonts — Archivo · IBM Plex Sans · IBM Plex Mono |
 | Deploy | Vercel Static (sin build step) |
 
@@ -21,8 +22,16 @@ Sitio web institucional de HINKO Ingeniería. HTML/CSS estático, sin framework 
 
 ```
 hinko-landing/
-  index.html          # página principal
+  index.html                       # home (sección #lineas enlaza las páginas de servicio)
+  mantenimiento-integral.html      # → hinko.co/mantenimiento-integral
+  adecuaciones-remodelaciones.html # → hinko.co/adecuaciones-remodelaciones
+  consultoria-interventoria.html   # → hinko.co/consultoria-interventoria
+  cargadores-electricos.html       # → hinko.co/cargadores-electricos
   brand.css           # variables CSS del sistema de marca compartido
+  site.css            # estilos de todas las páginas
+  site.js             # comportamiento compartido
+  vercel.json         # cleanUrls (sin .html en la URL)
+  sitemap.xml · robots.txt
   assets/
     favicon.svg
     logo-knockout.png  # logo blanco para fondos oscuros (nav + footer)
@@ -68,6 +77,13 @@ Variables CSS compartidas con el brandkit de HINKO:
 | `#contacto` | Footer con datos de contacto, CTA de correo y equipo |
 
 **Equipo:** Nicolás Luengas (nicolas@hinko.co) · Henry Muñoz (henry@hinko.co) · Julián Castellanos (julian@hinko.co)
+
+### Páginas de servicio (landing pages de Google Ads)
+
+Cada una corresponde a una campaña Search y sigue la misma estructura:
+Hero con H1 + formulario (`#cotizar`) → banda de confianza → `#problemas` → `#incluye` → `#modalidades` (3 planes + sectores) → `#entregables` → `#trabajo` (si hay fotos) → `#proceso` → `#porque` → `#faq` (con JSON-LD FAQPage) → CTA final → otros servicios → footer. En móvil hay barra fija (`.mbar`) con WhatsApp + Cotizar.
+
+**Formularios:** todos usan `form.reg-form` y `site.js`. El campo `servicio` va oculto por página (`mantenimiento`, `remodelacion`, `consultoria`, `cargadores`). El select con `data-extra` y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM (`api/landing-prospecto.js` en hinko-ingenieria) solo guarda los campos que conoce. Eventos dataLayer: `formulario_enviado` (servicio, pagina) y `whatsapp_click` (pagina).
 
 ---
 
