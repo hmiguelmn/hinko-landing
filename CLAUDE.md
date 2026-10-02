@@ -90,12 +90,14 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 
 ## Páginas
 
+**Línea editorial:** páginas cortas y técnicas. La empresa debe verse seria y profesional, no necesitada de vender: sin secciones de "¿le suena familiar?", sin argumentos de venta repetidos ni varios llamados a la acción por página. Mostrar alcance, método, registro de obra y respaldo.
+
 | Página | Secciones |
 |---|---|
-| `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` · `#trabajo` · `#porque` · `#nosotros` · `#contacto` (formulario completo) |
-| `nosotros.html` | Hero corto · `#historia` (+ stats) · `#principios` · `#metodo` · `#servicios` · CTA. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
-| `contacto.html` | Hero corto · `#contactar` (WhatsApp, teléfono, correo, QR + formulario completo) · `#cobertura` · `#faq` |
-| Páginas de servicio | Hero + formulario · `#problema` · `#incluye` · `#para-quien` (+ entregables) · `#trabajo` (si hay fotos) · `#proceso` · `#porque` · `#faq` (JSON-LD FAQPage) · CTA · `#otros` |
+| `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` (lista `.scope`) · `#trabajo` · `#respaldo` (sellos) · `#contacto` (formulario completo) |
+| `nosotros.html` | Hero corto · `#historia` (perfil + cifras) · `#metodo` · `#respaldo`. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
+| `contacto.html` | Hero corto · `#contactar` (teléfono, WhatsApp, correo, QR + formulario completo) |
+| Páginas de servicio | Hero + formulario + barra de datos · `#alcance` (+ plan en Mantenimiento) · `#metodo` (4 pasos + imagen/diagrama) · `#trabajo` (si hay fotos) · `#respaldo` (sellos) · `#faq` (4 preguntas, JSON-LD FAQPage) |
 
 Cada página de servicio corresponde a una campaña Search de Google Ads.
 
