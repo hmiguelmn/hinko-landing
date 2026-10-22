@@ -43,6 +43,12 @@
     if(origen.gclid)p.push('Google Ads');
     return '['+p.join(' · ')+']';
   };
+  // GCLID: el de la URL/sesión; si no hay, la cookie `gclid` que guarda la etiqueta de GTM (persiste entre visitas)
+  const gclidCookie=()=>{
+    const m=document.cookie.match(/(?:^|;\s*)gclid=([^;]*)/);
+    try{return m?decodeURIComponent(m[1]).trim().slice(0,120):'';}catch(e){return '';}
+  };
+  const getGclid=()=>origen.gclid||gclidCookie();
 
   /* ---------- formularios de visita → CRM (app.hinko.co) ---------- */
   document.querySelectorAll('form.hk-form').forEach(form=>{
@@ -71,6 +77,8 @@
           delete data[el.name];
         });
         data.mensaje=[(data.mensaje||'').trim(),extras.join(' · '),origenTxt()].filter(Boolean).join('\n');
+        const gclid=getGclid();
+        if(gclid)data.gclid=gclid;
         const res=await fetch(form.action,{method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
         if(!res.ok)throw new Error('server');
         window.dataLayer.push({event:'formulario_enviado',servicio:data.servicio||'',pagina:location.pathname});

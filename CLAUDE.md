@@ -112,6 +112,7 @@ Cada página de servicio corresponde a una campaña Search de Google Ads.
 - Todos los formularios son `form.hk-form` y envían JSON a `https://app.hinko.co/api/landing-prospecto` (CRM, repo hinko-ingenieria). Campos requeridos por el CRM: nombre, empresa, telefono, email, ciudad.
 - En páginas de servicio, `servicio` va oculto (`mantenimiento`, `remodelacion`, `consultoria`, `cargadores`); en la home es un select.
 - El select con `data-extra` (tipo de propiedad, necesidad…) y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM solo guarda los campos que conoce.
+- `gclid` va como campo propio del JSON (solo si existe): se toma de la URL/`sessionStorage` (`hk_origen`) o, si no, de la cookie `gclid` que escribe la etiqueta "Guardar GCLID" de GTM. El CRM lo guarda en `crm_oportunidades.gclid` (migración 108).
 - Eventos dataLayer: `formulario_enviado` y `generate_lead` (servicio, pagina) al enviar; `call`, `whatsapp`, `agendar_click` en clics (atributo `data-ev`).
 - El CRM solo acepta envíos desde `hinko.co`: en previews de Vercel el formulario muestra error.
 
