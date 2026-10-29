@@ -114,7 +114,7 @@ Cada página de servicio corresponde a una campaña Search de Google Ads.
 - El select con `data-extra` (tipo de propiedad, necesidad…) y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM solo guarda los campos que conoce.
 - `gclid` va como campo propio del JSON (solo si existe): se toma de la URL/`sessionStorage` (`hk_origen`) o, si no, de la cookie `gclid` que escribe la etiqueta "Guardar GCLID" de GTM. El CRM lo guarda en `crm_oportunidades.gclid` (migración 110).
 - Eventos dataLayer: `formulario_enviado` y `generate_lead` (servicio, pagina) al enviar; `call`, `whatsapp`, `agendar_click` en clics (atributo `data-ev`).
-- El CRM solo acepta envíos desde `hinko.co`: en previews de Vercel el formulario muestra error.
+- El CRM de producción solo acepta envíos desde `hinko.co` (CORS): en un Preview de Vercel el formulario muestra error. Para probar en Preview, abrir la landing con `?api=https://hinko-ingenieria-….vercel.app` (URL del Preview del backend): `site.js` lo usa solo en `*.vercel.app` y el backend acepta `hinko-landing-*.vercel.app` solo cuando `VERCEL_ENV=preview`.
 
 ---
 

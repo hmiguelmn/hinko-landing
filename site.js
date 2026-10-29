@@ -50,6 +50,17 @@
   };
   const getGclid=()=>origen.gclid||gclidCookie();
 
+  /* ---------- Preview de Vercel: enviar al backend de Preview (?api=…), nunca al CRM de producción ---------- */
+  // Fuera de *.vercel.app (hinko.co) esto no hace nada y el formulario usa su action de siempre.
+  let apiPreview='';
+  if(location.hostname.endsWith('.vercel.app')){
+    try{
+      const a=qs.get('api');
+      if(a&&/^https:\/\/hinko-ingenieria-[a-z0-9-]+\.vercel\.app$/.test(a))sessionStorage.setItem('hk_api',a);
+      apiPreview=sessionStorage.getItem('hk_api')||'';
+    }catch(e){}
+  }
+
   /* ---------- formularios de visita → CRM (app.hinko.co) ---------- */
   document.querySelectorAll('form.hk-form').forEach(form=>{
     const box=form.parentElement;
@@ -79,7 +90,7 @@
         data.mensaje=[(data.mensaje||'').trim(),extras.join(' · '),origenTxt()].filter(Boolean).join('\n');
         const gclid=getGclid();
         if(gclid)data.gclid=gclid;
-        const res=await fetch(form.action,{method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
+        const res=await fetch(apiPreview?apiPreview+'/api/landing-prospecto':form.action,{method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
         if(!res.ok)throw new Error('server');
         window.dataLayer.push({event:'formulario_enviado',servicio:data.servicio||'',pagina:location.pathname});
         window.dataLayer.push({event:'generate_lead',servicio:data.servicio||'',pagina:location.pathname});
