@@ -32,6 +32,7 @@
   let ck=null;
   try{ck=JSON.parse(localStorage.getItem(CK)||'null');}catch(e){}
   if(ck&&!(Date.now()-ck.t<31536e6))ck=null;
+  let acepta=!!(ck&&ck.v==='aceptadas'); // solo con cookies aceptadas la atribución se guarda 90 días
   const gtag=window.gtag||function(){window.dataLayer.push(arguments);};
   const bar=document.createElement('div');
   bar.className='ckbar';bar.setAttribute('role','region');bar.setAttribute('aria-label','Aviso de cookies');
@@ -45,20 +46,53 @@
     try{localStorage.setItem(CK,JSON.stringify({v,t:Date.now()}));}catch(_){}
     gtag('consent','update',{analytics_storage:g,ad_storage:g,ad_user_data:g,ad_personalization:g});
     window.dataLayer.push({event:'cookie_consent',decision:v});
+    acepta=v==='aceptadas';
+    if(!acepta){try{localStorage.removeItem('hk_origen');}catch(_){}}  // al rechazar se borra lo guardado
+    guardarOrigen();
     bar.hidden=true;
   });
   document.addEventListener('click',e=>{if(e.target.closest('.ck-open')){bar.hidden=false;bar.querySelector('[data-ck]').focus();}});
 
   /* ---------- origen de la visita (Google Ads / UTM) ---------- */
-  // Se guarda en la sesión para no perderlo si el visitante navega a otra página antes de enviar.
-  const KEYS=['utm_source','utm_medium','utm_campaign','utm_term','gclid'];
-  let origen={};
-  try{origen=JSON.parse(sessionStorage.getItem('hk_origen')||'{}');}catch(e){}
+  // Último clic con atribución. Con cookies aceptadas se guarda 90 días en localStorage (ventana de Google Ads),
+  // para no perderlo si el visitante vuelve otro día a escribir. Si las rechazó (o aún no decide), solo dura la
+  // sesión (sessionStorage), como antes. Un clic nuevo con gclid/UTM reemplaza al anterior.
+  // Si el navegador bloquea el almacenamiento, vive en memoria durante la página.
+  const KEYS=['utm_source','utm_medium','utm_campaign','utm_term','gclid','gbraid','wbraid'];
+  const TTL=90*24*60*60*1000;
+  const acceso=n=>{try{const st=window[n];st.setItem('hk_t','1');st.removeItem('hk_t');return st;}catch(e){return null;}};
+  const sLocal=acceso('localStorage'),sSesion=acceso('sessionStorage');
+  const leer=st=>{
+    try{
+      const r=st&&JSON.parse(st.getItem('hk_origen')||'null');
+      if(r&&r.at&&Date.now()-r.at<TTL)return r;
+      if(st)st.removeItem('hk_origen');
+    }catch(e){}
+    return null;
+  };
+  if(!acepta&&sLocal){try{sLocal.removeItem('hk_origen');}catch(e){}}  // sin cookies aceptadas no se conserva nada entre visitas
+  let origen=(acepta&&leer(sLocal))||leer(sSesion)||{};
+  const guardarOrigen=()=>{
+    if(!origen.at)return;
+    try{
+      const j=JSON.stringify(origen);
+      if(acepta&&sLocal)sLocal.setItem('hk_origen',j);
+      else if(sSesion)sSesion.setItem('hk_origen',j);
+    }catch(e){}
+  };
   const qs=new URLSearchParams(location.search);
   if(KEYS.some(k=>qs.get(k))){
-    origen={};KEYS.forEach(k=>{if(qs.get(k))origen[k]=qs.get(k).slice(0,120);});
-    try{sessionStorage.setItem('hk_origen',JSON.stringify(origen));}catch(e){}
+    origen={at:Date.now(),landing:location.pathname};
+    KEYS.forEach(k=>{if(qs.get(k))origen[k]=qs.get(k).slice(0,255);});  // 255: un gclid truncado no sirve
+    guardarOrigen();
   }
+  // Campos que viajan al CRM como columnas propias (solo los que existen)
+  const origenCampos=()=>{
+    const o={};
+    KEYS.forEach(k=>{if(origen[k])o[k]=origen[k];});
+    if(origen.at){o.atribucion_at=new Date(origen.at).toISOString();o.landing_url=origen.landing;}
+    return o;
+  };
   const origenTxt=()=>{
     const p=['Página: '+location.pathname];
     if(origen.utm_campaign)p.push('Campaña: '+origen.utm_campaign);
@@ -103,6 +137,7 @@
         const fecha=new Date().toLocaleString('es-CO',{timeZone:'America/Bogota',dateStyle:'short',timeStyle:'short'});
         const autoriza='[Autorizó el tratamiento de datos personales · Información comercial: '+comercial+' · Política '+POLITICA+' · '+fecha+']';
         data.mensaje=[(data.mensaje||'').trim(),extras.join(' · '),origenTxt(),autoriza].filter(Boolean).join('\n');
+        Object.assign(data,origenCampos());  // gclid, gbraid, wbraid, utm_*, landing_url, atribucion_at
         const res=await fetch(form.action,{method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
         if(!res.ok)throw new Error('server');
         window.dataLayer.push({event:'formulario_enviado',servicio:data.servicio||'',pagina:location.pathname});
