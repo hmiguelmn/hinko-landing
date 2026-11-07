@@ -97,9 +97,11 @@
           delete data[el.name];
         });
         // Prueba de la autorización de datos personales (Ley 1581 de 2012): queda guardada en el CRM con el contacto
-        delete data.autoriza_datos;
+        // La casilla de información comercial es opcional y aparte: se registra "sí" o "no".
+        const comercial=data.autoriza_comercial?'sí':'no';
+        delete data.autoriza_datos;delete data.autoriza_comercial;
         const fecha=new Date().toLocaleString('es-CO',{timeZone:'America/Bogota',dateStyle:'short',timeStyle:'short'});
-        const autoriza='[Autorizó el tratamiento de datos personales · Política '+POLITICA+' · '+fecha+']';
+        const autoriza='[Autorizó el tratamiento de datos personales · Información comercial: '+comercial+' · Política '+POLITICA+' · '+fecha+']';
         data.mensaje=[(data.mensaje||'').trim(),extras.join(' · '),origenTxt(),autoriza].filter(Boolean).join('\n');
         const res=await fetch(form.action,{method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
         if(!res.ok)throw new Error('server');

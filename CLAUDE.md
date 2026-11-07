@@ -111,6 +111,8 @@ Cada página de servicio corresponde a una campaña Search de Google Ads.
 
 **Regla de contenido:** no mostrar nombres ni cargos del equipo en el sitio (la empresa debe verse institucional). Correo público: nicolas@hinko.co.
 
+**Datos legales (RUT):** HINKO INGENIERIA S.A.S. · NIT 902.064.506-1 · Calle 62 # 3F-25, Bogotá D.C. Correo para solicitudes sobre datos personales: santiago@hinko.co.
+
 **Equipo (solo referencia interna):** Nicolás Luengas (nicolas@hinko.co) · Henry Muñoz (henry@hinko.co) · Julián Castellanos (julian@hinko.co)
 
 ## Formularios y medición
@@ -118,7 +120,7 @@ Cada página de servicio corresponde a una campaña Search de Google Ads.
 - Todos los formularios son `form.hk-form` y envían JSON a `https://app.hinko.co/api/landing-prospecto` (CRM, repo hinko-ingenieria). Campos requeridos por el CRM: nombre, empresa, telefono, email, ciudad.
 - En páginas de servicio, `servicio` va oculto (`mantenimiento`, `remodelacion`, `consultoria`, `cargadores`); en la home es un select.
 - El select con `data-extra` (tipo de propiedad, necesidad…) y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM solo guarda los campos que conoce.
-- **Datos personales (Ley 1581 de 2012):** todo formulario lleva la casilla `.fchk` (`autoriza_datos`, obligatoria, nunca premarcada) antes de `.err`. `site.js` la quita del JSON y agrega al final de `mensaje` la prueba: `[Autorizó el tratamiento de datos personales · Política <versión> · <fecha>]`.
+- **Datos personales (Ley 1581 de 2012):** todo formulario lleva dos casillas `.fchk` antes de `.err`: `autoriza_datos` (obligatoria, nunca premarcada) y `autoriza_comercial` (opcional, para información comercial y boletines). `site.js` las quita del JSON y agrega al final de `mensaje` la prueba: `[Autorizó el tratamiento de datos personales · Información comercial: sí|no · Política <versión> · <fecha>]`.
 - **Cookies (Google Consent Mode v2):** cada página tiene en el `<head>`, antes de GTM, el script que fija el consentimiento por defecto en `denied` (o `granted` si el visitante ya aceptó). `site.js` muestra el aviso `.ckbar`, guarda la decisión 12 meses en `localStorage` (`hk_cookies`) y envía `gtag('consent','update',…)`. En GTM, las etiquetas que no son de Google deben configurarse para exigir consentimiento.
 - Eventos dataLayer: `formulario_enviado` y `generate_lead` (servicio, pagina) al enviar; `call`, `whatsapp`, `agendar_click` en clics (atributo `data-ev`); `cookie_consent` (decision) al responder el aviso de cookies.
 - El CRM solo acepta envíos desde `hinko.co`: en previews de Vercel el formulario muestra error.
