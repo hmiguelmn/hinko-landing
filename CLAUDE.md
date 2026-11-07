@@ -10,9 +10,9 @@ Sitio web institucional de HINKO Ingeniería. HTML/CSS estático, sin framework 
 
 | Capa | Tecnología |
 |------|-----------|
-| Markup | HTML5 estático (home, 4 páginas de servicio, Nosotros y Contacto) |
+| Markup | HTML5 estático (home, 4 páginas de servicio, Nosotros, Contacto y Tratamiento de datos) |
 | Estilos | CSS3 puro: variables en `brand.css`, componentes en `site.css` |
-| JS | `site.js` compartido (nav, reveal, formularios, UTM, eventos GTM) |
+| JS | `site.js` compartido (nav, reveal, aviso de cookies, formularios, UTM, eventos GTM) |
 | Fuentes | Google Fonts — Archivo · IBM Plex Sans · IBM Plex Mono |
 | Deploy | Vercel Static (sin build step) |
 
@@ -29,6 +29,7 @@ hinko-landing/
   cargadores-electricos.html       # → hinko.co/cargadores-electricos
   nosotros.html                    # → hinko.co/nosotros
   contacto.html                    # → hinko.co/contacto (formulario completo)
+  tratamiento-de-datos.html        # → hinko.co/tratamiento-de-datos (política Ley 1581 + cookies)
   brand.css           # variables CSS del sistema de marca compartido
   site.css            # estilos de todas las páginas
   site.js             # comportamiento compartido
@@ -87,6 +88,10 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 | Banda navy "Por qué HINKO" | `.why`, `.pts`, `.seals` |
 | FAQ | `.faqw`, `.faq details` |
 | CTA, otros servicios, footer, barra móvil (Llamar · WhatsApp · Agendar) | `.ctab`, `.cross`, `.foot`, `.abar` |
+| Botón flotante de WhatsApp (solo escritorio; en móvil está en `.abar`) | `.wa-float` |
+| Casilla de autorización de datos en formularios | `.fchk` |
+| Aviso de cookies (lo crea `site.js`) y enlaces legales del pie | `.ckbar`, `.foot .legal`, `.ck-open` |
+| Página de política | `.doc` |
 
 ## Páginas
 
@@ -97,6 +102,7 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 | `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` (lista `.scope`) · `#trabajo` · `#respaldo` (sellos) · `#contacto` (formulario completo) |
 | `nosotros.html` | Hero corto · `#historia` (perfil + cifras) · `#metodo` · `#respaldo`. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
 | `contacto.html` | Hero corto · `#contactar` (teléfono, WhatsApp, correo, QR + formulario completo) |
+| `tratamiento-de-datos.html` | Hero corto · `#politica` (10 numerales; `#cookies` es el 09). Si cambia, actualizar la fecha de vigencia y `POLITICA` en `site.js` |
 | Páginas de servicio | Hero + formulario + barra de datos · `#alcance` (+ plan en Mantenimiento) · `#metodo` (4 pasos + imagen/diagrama) · `#trabajo` (si hay fotos) · `#respaldo` (sellos) · `#faq` (4 preguntas, JSON-LD FAQPage) |
 
 Cada página de servicio corresponde a una campaña Search de Google Ads.
@@ -112,7 +118,9 @@ Cada página de servicio corresponde a una campaña Search de Google Ads.
 - Todos los formularios son `form.hk-form` y envían JSON a `https://app.hinko.co/api/landing-prospecto` (CRM, repo hinko-ingenieria). Campos requeridos por el CRM: nombre, empresa, telefono, email, ciudad.
 - En páginas de servicio, `servicio` va oculto (`mantenimiento`, `remodelacion`, `consultoria`, `cargadores`); en la home es un select.
 - El select con `data-extra` (tipo de propiedad, necesidad…) y el origen (página, `utm_campaign`, `utm_term`, gclid) se agregan al final de `mensaje`, porque el CRM solo guarda los campos que conoce.
-- Eventos dataLayer: `formulario_enviado` y `generate_lead` (servicio, pagina) al enviar; `call`, `whatsapp`, `agendar_click` en clics (atributo `data-ev`).
+- **Datos personales (Ley 1581 de 2012):** todo formulario lleva la casilla `.fchk` (`autoriza_datos`, obligatoria, nunca premarcada) antes de `.err`. `site.js` la quita del JSON y agrega al final de `mensaje` la prueba: `[Autorizó el tratamiento de datos personales · Política <versión> · <fecha>]`.
+- **Cookies (Google Consent Mode v2):** cada página tiene en el `<head>`, antes de GTM, el script que fija el consentimiento por defecto en `denied` (o `granted` si el visitante ya aceptó). `site.js` muestra el aviso `.ckbar`, guarda la decisión 12 meses en `localStorage` (`hk_cookies`) y envía `gtag('consent','update',…)`. En GTM, las etiquetas que no son de Google deben configurarse para exigir consentimiento.
+- Eventos dataLayer: `formulario_enviado` y `generate_lead` (servicio, pagina) al enviar; `call`, `whatsapp`, `agendar_click` en clics (atributo `data-ev`); `cookie_consent` (decision) al responder el aviso de cookies.
 - El CRM solo acepta envíos desde `hinko.co`: en previews de Vercel el formulario muestra error.
 
 ---
