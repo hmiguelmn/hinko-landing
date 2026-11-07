@@ -313,6 +313,16 @@ h2.sec em{font-style:normal;color:var(--gold-deep)}
 @media(max-width:900px){.foot .top{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.foot .top{grid-template-columns:1fr}}
 
+/* botón flotante de WhatsApp (escritorio; en móvil ya está en la barra .abar) */
+.wa-float{position:fixed;right:24px;bottom:24px;z-index:40;display:flex;align-items:center;height:56px;min-width:56px;padding:0 16px;border-radius:28px;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(0,28,56,.28);transition:transform .2s,box-shadow .2s}
+.wa-float svg{width:24px;height:24px;flex:none}
+.wa-float span{max-width:0;overflow:hidden;white-space:nowrap;font-family:var(--font-body);font-size:14.5px;font-weight:500;transition:max-width .3s ease,margin .3s ease}
+.wa-float:hover,.wa-float:focus-visible{color:#fff;transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,28,56,.34)}
+.wa-float:hover span,.wa-float:focus-visible span{max-width:220px;margin-left:10px}
+.wa-float:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:760px){.wa-float{display:none}}
+@media(prefers-reduced-motion:reduce){.wa-float,.wa-float span{transition:none}}
+
 /* mobile action bar */
 .abar{display:none}
 @media(max-width:760px){
