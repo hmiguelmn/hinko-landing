@@ -93,14 +93,6 @@
     if(origen.at){o.atribucion_at=new Date(origen.at).toISOString();o.landing_url=origen.landing;}
     return o;
   };
-  const origenTxt=()=>{
-    const p=['Página: '+location.pathname];
-    if(origen.utm_campaign)p.push('Campaña: '+origen.utm_campaign);
-    if(origen.utm_term)p.push('Término: '+origen.utm_term);
-    if(origen.utm_source&&!origen.utm_campaign)p.push('Fuente: '+origen.utm_source);
-    if(origen.gclid)p.push('Google Ads');
-    return '['+p.join(' · ')+']';
-  };
 
   /* ---------- formularios de visita → CRM (app.hinko.co) ---------- */
   const POLITICA='v1 del 7/11/2026'; // actualizar si cambia tratamiento-de-datos.html
@@ -124,22 +116,21 @@
       btn.disabled=true;btn.textContent='Enviando…';
       try{
         const data=Object.fromEntries(new FormData(form));
-        // Campos de calificación propios de cada página: van dentro del mensaje (el CRM no los conoce)
-        const extras=[];
+        // Campo de calificación propio de cada página (tipo de propiedad, espacio, necesidad…): va como dato separado,
+        // el CRM lo guarda en su propio campo (no se mezcla con el mensaje del cliente)
         form.querySelectorAll('[data-extra]').forEach(el=>{
-          if(el.value)extras.push(el.dataset.extra+': '+el.value);
+          if(el.value&&!data.solicitud_valor){data.solicitud_tipo=el.dataset.extra;data.solicitud_valor=el.value;}
           delete data[el.name];
         });
-        // Prueba de la autorización de datos personales (Ley 1581 de 2012): queda guardada en el CRM con el contacto
-        // La casilla de información comercial es opcional y aparte: se registra "sí" o "no".
-        const comercial=data.autoriza_comercial?'sí':'no';
+        // Autorización de datos personales (Ley 1581 de 2012): el CRM la guarda con el contacto (fecha del servidor y
+        // versión de la política). La casilla de información comercial es opcional y aparte.
         const autorizaDatos=!!data.autoriza_datos;
+        const comercial=!!data.autoriza_comercial;
         delete data.autoriza_datos;delete data.autoriza_comercial;
-        data.autoriza_datos=autorizaDatos;  // el servidor la exige (Ley 1581): sin esto responde 400
-        data.acepta_comercial=comercial==='sí';  // dato propio: el CRM lo usa para la suscripción a campañas de correo
-        const fecha=new Date().toLocaleString('es-CO',{timeZone:'America/Bogota',dateStyle:'short',timeStyle:'short'});
-        const autoriza='[Autorizó el tratamiento de datos personales · Información comercial: '+comercial+' · Política '+POLITICA+' · '+fecha+']';
-        data.mensaje=[(data.mensaje||'').trim(),extras.join(' · '),origenTxt(),autoriza].filter(Boolean).join('\n');
+        data.autoriza_datos=autorizaDatos;   // el servidor la exige: sin esto responde 400
+        data.acepta_comercial=comercial;     // define si el contacto queda suscrito a campañas de correo
+        data.politica_version=POLITICA;
+        data.mensaje=(data.mensaje||'').trim();   // solo lo que escribió el cliente
         Object.assign(data,origenCampos());  // gclid, gbraid, wbraid, utm_*, landing_url, atribucion_at
         const res=await fetch(form.action,{method:'POST',body:JSON.stringify(data),headers:{'Accept':'application/json','Content-Type':'application/json'}});
         if(!res.ok)throw new Error('server');
