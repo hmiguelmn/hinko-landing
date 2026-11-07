@@ -313,6 +313,53 @@ h2.sec em{font-style:normal;color:var(--gold-deep)}
 @media(max-width:900px){.foot .top{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.foot .top{grid-template-columns:1fr}}
 
+/* casilla de autorización de datos personales (formularios) */
+.fchk{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.5;color:var(--graphite);cursor:pointer}
+.fchk input{flex:none;width:17px;height:17px;margin:1px 0 0;accent-color:var(--gold-deep);cursor:pointer}
+.fchk a{color:var(--navy)}
+.hk-form.tried .fchk input:invalid{outline:2px solid #C27070;outline-offset:1px}
+.hk-form.tried .fchk input:invalid+span{color:#9B2C2C}
+
+/* pie: enlaces legales */
+.foot .bottom .legal{display:flex;gap:18px;flex-wrap:wrap}
+.foot .bottom .legal a,.foot .bottom .legal button{font:inherit;letter-spacing:inherit;color:#9FB0BF;text-decoration:none;background:none;border:0;padding:0;cursor:pointer}
+.foot .bottom .legal a:hover,.foot .bottom .legal button:hover{color:var(--gold-soft)}
+
+/* aviso de cookies */
+.ckbar{position:fixed;left:24px;bottom:24px;z-index:41;max-width:440px;background:var(--navy);color:#DCE3EA;border:1px solid rgba(255,255,255,.16);border-top:3px solid var(--gold);border-radius:4px;padding:20px 22px;box-shadow:0 16px 40px rgba(0,28,56,.35);font-size:14px;line-height:1.55}
+.ckbar[hidden]{display:none}
+.ckbar p{margin:0 0 16px}
+.ckbar a{color:var(--gold-soft)}
+.ckbar .b{display:flex;gap:10px}
+.ckbar button{flex:1;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:12px 16px;border-radius:3px;cursor:pointer;border:1px solid var(--gold);background:transparent;color:#fff}
+.ckbar button[data-ck=aceptadas]{background:var(--gold);color:var(--navy)}
+.ckbar button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media(max-width:760px){.ckbar{left:0;right:0;bottom:60px;max-width:none;border-radius:0;padding:16px 20px}}
+
+/* página de política de tratamiento de datos */
+.doc{max-width:780px}
+.doc h2{font-family:var(--font-display);font-weight:800;font-size:clamp(21px,2.2vw,26px);letter-spacing:-.01em;color:var(--navy);margin:48px 0 12px;scroll-margin-top:96px}
+.doc h2:first-child{margin-top:0}
+.doc h2 .n{font-family:var(--font-mono);font-size:13px;font-weight:500;color:var(--gold-deep);margin-right:12px;letter-spacing:.1em}
+.doc p,.doc li{font-size:16px;color:var(--graphite);line-height:1.7}
+.doc ul{padding-left:20px;margin:0 0 14px}
+.doc li{margin-bottom:6px}
+.doc strong{color:var(--navy);font-weight:600}
+.doc .meta{font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite);margin:0 0 36px}
+.doc table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:14.5px}
+.doc th,.doc td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--mist);vertical-align:top;color:var(--graphite)}
+.doc th{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);font-weight:500}
+
+/* botón flotante de WhatsApp (escritorio; en móvil ya está en la barra .abar) */
+.wa-float{position:fixed;right:24px;bottom:24px;z-index:40;display:flex;align-items:center;height:56px;min-width:56px;padding:0 16px;border-radius:28px;background:#25D366;color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(0,28,56,.28);transition:transform .2s,box-shadow .2s}
+.wa-float svg{width:24px;height:24px;flex:none}
+.wa-float span{max-width:0;overflow:hidden;white-space:nowrap;font-family:var(--font-body);font-size:14.5px;font-weight:500;transition:max-width .3s ease,margin .3s ease}
+.wa-float:hover,.wa-float:focus-visible{color:#fff;transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,28,56,.34)}
+.wa-float:hover span,.wa-float:focus-visible span{max-width:220px;margin-left:10px}
+.wa-float:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:760px){.wa-float{display:none}}
+@media(prefers-reduced-motion:reduce){.wa-float,.wa-float span{transition:none}}
+
 /* mobile action bar */
 .abar{display:none}
 @media(max-width:760px){
