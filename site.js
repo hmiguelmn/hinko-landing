@@ -43,12 +43,15 @@
     if(origen.gclid)p.push('Google Ads');
     return '['+p.join(' · ')+']';
   };
-  // GCLID: el de la URL/sesión; si no hay, la cookie `gclid` que guarda la etiqueta de GTM (persiste entre visitas)
+  // GCLID que viaja con el formulario, en este orden: 1) parámetro `gclid` de la URL; 2) cookie llamada exactamente
+  // `gclid` (la guarda la etiqueta de GTM y persiste entre visitas); 3) vacío. Si la URL lo trae, gana sobre la cookie.
+  // Se resuelve al enviar el formulario, no al cargar la página.
+  const gclidUrl=()=>(qs.get('gclid')||'').trim().slice(0,120);
   const gclidCookie=()=>{
     const m=document.cookie.match(/(?:^|;\s*)gclid=([^;]*)/);
     try{return m?decodeURIComponent(m[1]).trim().slice(0,120):'';}catch(e){return '';}
   };
-  const getGclid=()=>origen.gclid||gclidCookie();
+  const getGclid=()=>gclidUrl()||gclidCookie()||'';
 
   /* ---------- Preview de Vercel: enviar al backend de Preview (?api=…), nunca al CRM de producción ---------- */
   // Fuera de *.vercel.app (hinko.co) esto no hace nada y el formulario usa su action de siempre.
