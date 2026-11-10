@@ -86,11 +86,20 @@
     KEYS.forEach(k=>{if(qs.get(k))origen[k]=qs.get(k).slice(0,255);});  // 255: un gclid truncado no sirve
     guardarOrigen();
   }
+  // Respaldo del gclid: cookie llamada exactamente `gclid` (la guarda la etiqueta de GTM). Solo se lee con cookies
+  // aceptadas, igual que el resto de lo que se conserva entre visitas. Se lee al enviar el formulario, no al cargar.
+  const gclidCookie=()=>{
+    if(!acepta)return '';
+    const m=document.cookie.match(/(?:^|;\s*)gclid=([^;]*)/);
+    try{return m?decodeURIComponent(m[1]).trim().slice(0,255):'';}catch(e){return '';}
+  };
   // Campos que viajan al CRM como columnas propias (solo los que existen)
   const origenCampos=()=>{
     const o={};
     KEYS.forEach(k=>{if(origen[k])o[k]=origen[k];});
     if(origen.at){o.atribucion_at=new Date(origen.at).toISOString();o.landing_url=origen.landing;}
+    // gclid: 1) el de la URL (o el del último clic guardado); 2) cookie `gclid`; 3) vacío. La URL gana sobre la cookie.
+    if(!o.gclid){const c=gclidCookie();if(c)o.gclid=c;}
     return o;
   };
 
