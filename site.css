@@ -444,3 +444,8 @@ a.cway:hover{border-color:var(--gold);transform:translateY(-2px);color:var(--nav
 .grp h3{font-family:var(--font-display);font-weight:800;font-size:clamp(22px,2.4vw,30px);color:var(--navy);letter-spacing:-.018em;margin:0;line-height:1.05}
 .grp+p{font-size:15.5px;color:var(--graphite);margin:12px 0 0;max-width:62ch}
 .grp~.cgrid{margin-top:28px}
+
+.foot .social{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.foot .social a{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border:1px solid rgba(255,255,255,.18);border-radius:4px;color:#C9D2DC;text-decoration:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:color .2s,border-color .2s,background .2s}
+.foot .social a svg{width:17px;height:17px;flex:none}
+.foot .social a:hover,.foot .social a:focus-visible{color:var(--gold-soft);border-color:var(--gold);background:rgba(205,154,58,.08)}
