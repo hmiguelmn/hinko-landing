@@ -35,7 +35,8 @@ hinko-landing/
   site.js             # comportamiento compartido
   vercel.json         # cleanUrls (sin .html en la URL)
   sitemap.xml · robots.txt
-  .vercelignore       # evita que Vercel publique CLAUDE.md
+  .vercelignore       # evita que Vercel publique CLAUDE.md y guardado/
+  guardado/           # versiones retiradas (no se publican); ver guardado/README.md
   assets/
     favicon.svg
     logo-knockout.png  # logo blanco para fondos oscuros (nav + footer)
@@ -81,7 +82,7 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 | Formulario de visita (tarjeta blanca con borde dorado) | `.fcard#agendar`, `form.hk-form`, `.ff`, `.frow`, `.fok` |
 | Problema + tarjeta de riesgo | `.prob`, `.plist`, `.risk` |
 | Alcance | `.scope` (lista) o `.cgrid` + `.cc` (tarjetas) |
-| Plan anual con 3 niveles | `.plan`, `.tier` |
+| Bloque navy + 3 columnas (en Mantenimiento: "Tipos de intervención") | `.plan`, `.tier` |
 | Para quién | `.aud` |
 | Galería antes/durante/después | `.xhead`, `.xrow`, `.xcell` |
 | Pasos | `.steps` |
@@ -103,11 +104,13 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 | `nosotros.html` | Hero corto · `#historia` (perfil + cifras) · `#metodo` · `#respaldo`. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
 | `contacto.html` | Hero corto · `#contactar` (teléfono, WhatsApp, correo, QR + formulario completo) |
 | `tratamiento-de-datos.html` | Hero corto · `#politica` (10 numerales; `#cookies` es el 09). Si cambia, actualizar la fecha de vigencia y `POLITICA` en `site.js` |
-| Páginas de servicio | Hero + formulario + barra de datos · `#alcance` (+ plan en Mantenimiento) · `#metodo` (4 pasos + imagen/diagrama) · `#trabajo` (si hay fotos) · `#respaldo` (sellos) · `#faq` (4 preguntas, JSON-LD FAQPage) |
+| Páginas de servicio | Hero + formulario + barra de datos · `#alcance` (+ tipos de intervención en Mantenimiento) · `#metodo` (4 pasos + imagen/diagrama) · `#trabajo` (si hay fotos) · `#respaldo` (sellos) · `#faq` (4 preguntas, JSON-LD FAQPage) |
 
 Cada página de servicio corresponde a una campaña Search de Google Ads.
 
-**Datos del negocio usados en el sitio (vienen del Brandkit V2):** plan anual de mantenimiento con pago mensual (niveles básico, estándar, integral) · emergencias en máx. 48 h · garantía de 6 meses por escrito en el plan · visita de diagnóstico sin costo · +8 años en ingeniería civil · cobertura nacional · Tel/WhatsApp +57 318 349 3168.
+**Datos del negocio usados en el sitio (vienen del Brandkit V2):** mantenimiento por intervención (correctivo, preventivo, renovación), cotizado después de la visita · emergencias en máx. 48 h · garantía de 6 meses por escrito en cada intervención · visita de diagnóstico sin costo · +8 años en ingeniería civil · cobertura nacional · Tel/WhatsApp +57 318 349 3168.
+
+**Suscripción en pausa (2026-11-18):** el plan anual con pago mensual se retiró del sitio mientras se explora; la versión anterior está en `guardado/` (etiqueta git `mantenimiento-suscripcion-v1`). No volver a ofrecer planes ni pago mensual sin que el usuario lo pida.
 
 **Regla de contenido:** no mostrar nombres ni cargos del equipo en el sitio (la empresa debe verse institucional). Correo público: nicolas@hinko.co.
 
