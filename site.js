@@ -22,7 +22,7 @@
   /* ---------- eventos de clic para GTM: call · whatsapp · agendar_click ---------- */
   document.addEventListener('click',e=>{
     const a=e.target.closest('[data-ev]');
-    if(a)window.dataLayer.push({event:a.dataset.ev,servicio:svc||page,pagina:location.pathname});
+    if(a)window.dataLayer.push({event:a.dataset.ev,servicio:a.dataset.svc||svc||page,pagina:location.pathname});
   });
 
   /* ---------- aviso de cookies (Google Consent Mode v2) ---------- */

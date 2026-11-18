@@ -100,7 +100,7 @@ Diseño **Brandkit V2** (hecho en Claude Design). Todas las páginas comparten `
 
 | Página | Secciones |
 |---|---|
-| `index.html` | Hero · `#servicios` (4 tarjetas `.hub`) · `#capacidades` (lista `.scope`) · `#trabajo` · `#respaldo` (sellos) · `#contacto` (formulario completo) |
+| `index.html` | Hero · `#servicios` (4 tarjetas `.hub`; cada una con botón "Agendar visita" → `/<servicio>#agendar`, por pedido del usuario aunque la línea editorial prefiera un solo CTA) · `#capacidades` (lista `.scope`) · `#trabajo` · `#respaldo` (sellos) · `#contacto` (formulario completo) |
 | `nosotros.html` | Hero corto · `#historia` (perfil + cifras) · `#metodo` · `#respaldo`. Sin formulario: "Agendar visita" lleva a `/contacto#agendar` |
 | `contacto.html` | Hero corto · `#contactar` (teléfono, WhatsApp, correo, QR + formulario completo) |
 | `tratamiento-de-datos.html` | Hero corto · `#politica` (10 numerales; `#cookies` es el 09). Si cambia, actualizar la fecha de vigencia y `POLITICA` en `site.js` |
